@@ -1,85 +1,52 @@
 from scrapy.conf import settings
 from urllib import urlencode
 from scrapy import Request
-
 import scrapy
-from scrapy.item import Item, Field
 import re
 import json
 
 
-class SiteProductItem(Item):
-    Title = Field()
-    Price = Field()
-    Product_Url = Field()
+class SiteProductItem(scrapy.Item):
+    Title = scrapy.Field()
+    Price = scrapy.Field()
+    Product_Url = scrapy.Field()
 
 
 class NewEvents (scrapy.Spider):
     name = "scrapingdata"
-    allowed_domains = ['demo.api2cart.com']
-    # start_urls = ['https://coinmarketcap.com/all/views/all/']
-
-    LOGIN_URL = 'https://app.api2cart.com/login/login'
-    API_URL = 'https://app.api2cart.com/stores/data?_dc=1515986395368&page=1&start=0&limit=30'
-
-    form_data = {'account_email': 'info@web-company.nl', 'account_password': 'IGUvbkjtoi2hgWE@'}
-    headers = {'Referer': 'https://app.api2cart.com/stores',
-               'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                             'Chrome/62.0.3202.75 Safari/537.36',
-               'X-Requested-With': 'XMLHttpRequest',
-               'Content-Type': 'application/x-www-form-urlencoded'
-               }
-
-    settings.overrides['ROBOTSTXT_OBEY'] = False
+    allowed_domains = ['www.myvaporstore.com']
+    start_urls = ['http://www.myvaporstore.com/New-Ecig-Hardware-s/474.htm?searching=Y&sort=3&cat=474',
+                  'http://www.myvaporstore.com/sale-hardware-s/622.htm?searching=Y&sort=3&cat=622']
 
     def start_requests(self):
-        yield Request(url=self.LOGIN_URL,
-                      callback=self._parse_data,
-                      headers=self.headers,
-                      method='POST',
-                      body=urlencode(self.form_data),
-                      dont_filter=True
-                      )
+        start_urls = self.start_urls
+        for start_url in start_urls:
+            yield scrapy.Request(url=start_url, callback=self.parse_pages)
 
-    def _parse_data(self, response):
-        # fields = [
-        #     'Title',
-        #     'Price',
-        #     'Product_Url'
-        # ]
+    def parse_pages(self, response):
+        page_total_count = 0
+        page_links = []
+        total_count = response.xpath('//font[@face="Arial"]/b/font/b/text()').extract()[1].split(' ')[2]
 
-        # trs = response.xpath('//table//tbody//tr[@id]')
-        # for tr in trs:
-        #     item = EventItem()
-        #     for i in range(1, 10):
-        #         value = [
-        #             val.strip()
-        #             for val in tr.xpath('.//td[position()={position} and a]/a/text() |'
-        #                                 ' .//td[position()={position}]/text()'.format(position=i+1)).extract()
-        #             if val.strip()
-        #         ]
-        #         item[fields[i-1]] = value[0].replace('?', '').replace('*', '') if value else u''
-        #     yield item
+        if total_count:
+            page_total_count = int(total_count)
 
-        return Request(
-            url=self.API_URL,
-            headers=self.headers,
-            dont_filter=True,
-            callback=self._parse_product_links
-        )
+        if page_total_count == 30:
+            PAGE_LINK = 'http://www.myvaporstore.com/New-Ecig-Hardware-s' \
+                        '/474.htm?searching=Y&sort=3&cat=474&show=20&page={page_number}'
+        if page_total_count == 5:
+            PAGE_LINK = 'http://www.myvaporstore.com/sale-hardware-s' \
+                        '/622.htm?searching=Y&sort=3&cat=622&show=20&page={page_number}'
+
+        for page_num in range(1, page_total_count + 1):
+            link = PAGE_LINK.format(page_number=page_num)
+            page_links.append(link)
+        for page_link in page_links:
+            yield scrapy.Request(url=page_link, callback=self._parse_product_links, dont_filter=True)
 
     def _parse_product_links(self, response):
 
-        stores = []
-        prods = []
-        try:
-            data = json.loads(response.body)
-            stores = data.get('stores')
-        except:
-            self.log('Json Error')
-        for store in stores:
-            prods.append(store.get('store_url'))
-
+        prods = response.xpath('//div[@class="v-product"]/a[@class="v-product__img"]/@href').extract()
         for prod in prods:
             yield Request(url=prod, callback=self.parse_product)
 
@@ -95,18 +62,16 @@ class NewEvents (scrapy.Spider):
 
     @staticmethod
     def _parse_title(response):
-        title = response.xpath('//ul[@class="thumb-container"]/li[@class="item first"]/a/@href').extract()
-
-        return title
+        title = response.xpath('//span[@itemprop="name"]//text()').extract()
+        return str(title[0]) if title else " "
 
     @staticmethod
     def _parse_price(response):
-        price = response.xpath('//ul[@class="thumb-container"]/li[@class="item first"]/a/@href').extract()
-        return price
+        price = response.xpath('//span[@itemprop="price"]//text()').extract()
+        return str(price[0]) if price else " "
 
     @staticmethod
     def _parse_url(response):
-        url = response.xpath('//ul[@class="thumb-container"]/li[@class="item first"]/a/@href').extract()
-
+        url = response.url
         return url
 

@@ -15,12 +15,13 @@ class SiteProductItem(scrapy.Item):
 class NewEvents (scrapy.Spider):
     name = "scrapingdata"
     allowed_domains = ['www.myvaporstore.com', 'www.vapordna.com', 'vaping.com',
-                       'www.directvapor.com', 'www.vapestore.co.uk']
+                       'www.directvapor.com', 'www.vapestore.co.uk', 'www.migvapor.com']
     start_urls = ['http://www.myvaporstore.com/New-Ecig-Hardware-s/474.htm?searching=Y&sort=3&cat=474',
                   'https://www.vapordna.com/Devices-s/1814.htm',
                   'https://vaping.com/vape-mods',
-                  'https://www.vapestore.co.uk/black-friday/hardware/']
-    # start_urls = ['https://www.vapestore.co.uk/black-friday/hardware/']
+                  'https://www.vapestore.co.uk/black-friday/hardware/',
+                  'https://www.migvapor.com/electronic-cigarettes/advanced-e-cigarette-kits']
+    # start_urls = ['https://www.migvapor.com/electronic-cigarettes/advanced-e-cigarette-kits']
 
     def start_requests(self):
         start_urls = self.start_urls
@@ -53,6 +54,9 @@ class NewEvents (scrapy.Spider):
         if response.url == 'https://www.vapestore.co.uk/black-friday/hardware/':
             page_links = ['https://www.vapestore.co.uk/black-friday/hardware/']
 
+        if response.url == 'https://www.migvapor.com/electronic-cigarettes/advanced-e-cigarette-kits':
+            page_links = ['https://www.migvapor.com/electronic-cigarettes/advanced-e-cigarette-kits']
+
         for page_link in page_links:
             yield scrapy.Request(url=page_link, callback=self._parse_product_links, dont_filter=True)
 
@@ -67,6 +71,11 @@ class NewEvents (scrapy.Spider):
                 yield Request(url=prod, callback=self.parse_product)
         if response.xpath('//li[@class="item"]/a[@class="product-image"]/@href').extract():
             prods = response.xpath('//li[@class="item"]/a[@class="product-image"]/@href').extract()
+            for prod in prods:
+                yield Request(url=prod, callback=self.parse_product)
+
+        if response.xpath('//li[@class="item isotope-item"]/a[@class="item-content"]/@href').extract():
+            prods = response.xpath('//li[@class="item isotope-item"]/a[@class="item-content"]/@href').extract()
             for prod in prods:
                 yield Request(url=prod, callback=self.parse_product)
 
@@ -91,9 +100,10 @@ class NewEvents (scrapy.Spider):
             name = response.xpath('//span[@itemprop="name"]//text()').extract()[0]
         if response.xpath('//div[@class="name"]/text()').extract():
             name = response.xpath('//div[@class="product-name"]//div[@class="name"]/text()').extract()[0].strip()
-
         if response.xpath('//h1[@class="listing--title"]/text()').extract():
             name = response.xpath('//h1[@class="listing--title"]/text()').extract()[0].strip()
+        if response.xpath('//h1[@itemprop="name"]/text()').extract():
+            name = response.xpath('//h1[@itemprop="name"]/text()').extract()[0].strip()
         return str(name) if name else " "
 
     @staticmethod

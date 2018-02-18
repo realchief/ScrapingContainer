@@ -23,7 +23,7 @@ class NewEvents (scrapy.Spider):
                   'https://www.vapestore.co.uk/black-friday/hardware/',
                   'https://www.migvapor.com/electronic-cigarettes/advanced-e-cigarette-kits',
                   'https://www.electrictobacconist.com/e-cigarette-kits-c1']
-    # start_urls = ['https://www.electrictobacconist.com/e-cigarette-kits-c1']
+    # start_urls = ['https://www.vaporfi.com/electronic-cigarettes/?limit=all']
 
     def start_requests(self):
         start_urls = self.start_urls
@@ -92,6 +92,11 @@ class NewEvents (scrapy.Spider):
             for prod in prods:
                 yield Request(url=prod, callback=self.parse_product)
 
+        if response.xpath('//div[@class="product-image-area"]/a/@href').extract():
+            prods = response.xpath('//div[@class="product-image-area"]/a/@href').extract()
+            for prod in prods:
+                yield Request(url=prod, callback=self.parse_product)
+
         if response.xpath('//div[@class="product--image-link"]/@href').extract():
             prods = response.xpath('//div[@class="product--image-link"]/@href').extract()
             for prod in prods:
@@ -124,6 +129,9 @@ class NewEvents (scrapy.Spider):
         if response.xpath('//span[@class="product-content__title--brand"]/text()').extract():
             name = response.xpath('//span[@class="product-content__title--brand"]/text()').extract()[0].strip()
 
+        if response.xpath('//div[@class="product-name"]/h1/text()').extract():
+            name = response.xpath('//div[@class="product-name"]/h1/text()').extract()[0].strip()
+
         return str(name) if name else " "
 
     @staticmethod
@@ -132,7 +140,7 @@ class NewEvents (scrapy.Spider):
             price = response.xpath('//span[@itemprop="price"]//text()').extract()
 
         if response.xpath('//span[@class="price"]//text()').extract():
-            price = response.xpath('//span[@class="price"]//text()').extract()
+            price = response.xpath('//span[@class="price"]//text()').extract()[0].strip()
 
         if response.xpath('//span[@class="USD"]//text()').extract():
             price = response.xpath('//span[@class="USD"]//text()').extract()

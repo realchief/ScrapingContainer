@@ -12,12 +12,13 @@ import traceback
 class ScraperPipeline(object):
     def process_item(self, item, spider):
         return item
+
     # def __init__(self):
     #     self.conn = MySQLdb.connect(
     #         host='localhost',
     #         user='root',
     #         passwd='root',
-    #         db='scrapy',
+    #         db='HardwareDB',
     #         charset="utf8",
     #         use_unicode=True
     #     )
@@ -26,14 +27,12 @@ class ScraperPipeline(object):
     # def process_item(self, item, spider):
     #     try:
     #         self.cursor.execute(
-    #             """INSERT INTO currency
-    #             (name, symbol, marketcap, price, circulatingsupply, volume, percent_1h, percent_24h, percent_7d)
-    #             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)""", (
-    #                 item['Name'].encode('utf-8'), item['Symbol'].encode('utf-8'),
-    #                 item['MarketCap'].encode('utf-8'), item['Price'].encode('utf-8'),
-    #                 item['CirculatingSupply'].encode('utf-8'), item['Volume'].encode('utf-8'),
-    #                 item['Percent_1h'].encode('utf-8'), item['Percent_24h'].encode('utf-8'),
-    #                 item['Percent_7d'].encode('utf-8')
+    #             """INSERT INTO ScrapingTable
+    #             (Name, Price, Product_Url)
+    #             VALUES (%s, %s, %s)""", (
+    #                 item['Name'],
+    #                 item['Price'],
+    #                 item['Product_Url']
     #             )
     #         )
     #

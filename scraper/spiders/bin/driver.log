@@ -1,0 +1,236 @@
+[0.672][INFO]: COMMAND InitSession {
+   "capabilities": {
+      "alwaysMatch": {
+         "browserName": "chrome",
+         "goog:chromeOptions": {
+            "args": [  ],
+            "extensions": [  ]
+         },
+         "platformName": "any"
+      },
+      "firstMatch": [ {
+
+      } ]
+   },
+   "desiredCapabilities": {
+      "browserName": "chrome",
+      "goog:chromeOptions": {
+         "args": [  ],
+         "extensions": [  ]
+      },
+      "platform": "ANY",
+      "version": ""
+   }
+}
+[0.673][INFO]: Populating Preferences file: {
+   "alternate_error_pages": {
+      "enabled": false
+   },
+   "autofill": {
+      "enabled": false
+   },
+   "browser": {
+      "check_default_browser": false
+   },
+   "distribution": {
+      "import_bookmarks": false,
+      "import_history": false,
+      "import_search_engine": false,
+      "make_chrome_default_for_user": false,
+      "show_welcome_page": false,
+      "skip_first_run_ui": true
+   },
+   "dns_prefetching": {
+      "enabled": false
+   },
+   "profile": {
+      "content_settings": {
+         "pattern_pairs": {
+            "https://*,*": {
+               "media-stream": {
+                  "audio": "Default",
+                  "video": "Default"
+               }
+            }
+         }
+      },
+      "default_content_setting_values": {
+         "geolocation": 1
+      },
+      "default_content_settings": {
+         "geolocation": 1,
+         "mouselock": 1,
+         "notifications": 1,
+         "popups": 1,
+         "ppapi-broker": 1
+      },
+      "password_manager_enabled": false
+   },
+   "safebrowsing": {
+      "enabled": false
+   },
+   "search": {
+      "suggest_enabled": false
+   },
+   "translate": {
+      "enabled": false
+   }
+}
+[0.673][INFO]: Populating Local State file: {
+   "background_mode": {
+      "enabled": false
+   },
+   "ssl": {
+      "rev_checking": {
+         "enabled": false
+      }
+   }
+}
+[0.673][INFO]: Launching chrome: /opt/google/chrome/google-chrome --disable-background-networking --disable-browser-side-navigation --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --disable-web-resources --enable-automation --enable-logging --force-fieldtrials=SiteIsolationExtensions/Control --ignore-certificate-errors --load-extension=/tmp/.org.chromium.Chromium.OpwRTi/internal --log-level=0 --metrics-recording-only --no-first-run --password-store=basic --remote-debugging-port=12874 --safebrowsing-disable-auto-update --test-type=webdriver --use-mock-keychain --user-data-dir=/tmp/.org.chromium.Chromium.zh09HQ data:,
+[3.767][INFO]: resolved localhost to ["127.0.0.1"]
+[4.043][INFO]: RESPONSE InitSession {
+   "acceptSslCerts": true,
+   "applicationCacheEnabled": false,
+   "browserConnectionEnabled": false,
+   "browserName": "chrome",
+   "chrome": {
+      "chromedriverVersion": "2.33.506092 (733a02544d189eeb751fe0d7ddca79a0ee28cce4)",
+      "userDataDir": "/tmp/.org.chromium.Chromium.zh09HQ"
+   },
+   "cssSelectorsEnabled": true,
+   "databaseEnabled": false,
+   "handlesAlerts": true,
+   "hasTouchScreen": false,
+   "javascriptEnabled": true,
+   "locationContextEnabled": true,
+   "mobileEmulationEnabled": false,
+   "nativeEvents": true,
+   "networkConnectionEnabled": false,
+   "pageLoadStrategy": "normal",
+   "platform": "Linux",
+   "rotatable": false,
+   "setWindowRect": true,
+   "takesHeapSnapshot": true,
+   "~~~": "..."
+}
+[4.047][INFO]: COMMAND MaximizeWindow {
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630",
+   "windowHandle": "current"
+}
+[4.047][INFO]: resolved localhost to ["127.0.0.1"]
+[4.342][INFO]: RESPONSE MaximizeWindow
+[4.346][INFO]: COMMAND SetImplicitWait {
+   "ms": 100000.0,
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630"
+}
+[4.346][INFO]: RESPONSE SetImplicitWait
+[4.349][INFO]: COMMAND SetTimeout {
+   "pageLoad": 100000,
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630"
+}
+[4.351][INFO]: RESPONSE SetTimeout unknown error: 'ms' must be a double
+  (Session info: chrome=62.0.3202.75)
+[4.359][INFO]: COMMAND SetTimeout {
+   "ms": 100000.0,
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630",
+   "type": "page load"
+}
+[4.395][INFO]: RESPONSE SetTimeout
+[4.397][INFO]: COMMAND Navigate {
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630",
+   "url": "http://www.oocl.com/eng/Pages/default.aspx"
+}
+[4.398][INFO]: Waiting for pending navigations...
+[4.535][INFO]: Done waiting for pending navigations. Status: ok
+[6.823][INFO]: Waiting for pending navigations...
+[7.083][INFO]: Done waiting for pending navigations. Status: ok
+[7.083][INFO]: RESPONSE Navigate
+[7.086][INFO]: COMMAND FindElement {
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630",
+   "using": "xpath",
+   "value": "//select[@id=\"ooclCargoSelector\"]/option[@value=\"cont\"]"
+}
+[7.086][INFO]: Waiting for pending navigations...
+[7.090][INFO]: Done waiting for pending navigations. Status: ok
+[11.671][INFO]: Waiting for pending navigations...
+[18.529][INFO]: Done waiting for pending navigations. Status: ok
+[18.530][INFO]: RESPONSE FindElement {
+   "ELEMENT": "0.22216930360528142-1"
+}
+[18.534][INFO]: COMMAND ClickElement {
+   "id": "0.22216930360528142-1",
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630"
+}
+[18.534][INFO]: Waiting for pending navigations...
+[18.569][INFO]: Done waiting for pending navigations. Status: ok
+[18.767][INFO]: Waiting for pending navigations...
+[18.787][INFO]: Done waiting for pending navigations. Status: ok
+[18.787][INFO]: RESPONSE ClickElement
+[18.793][INFO]: COMMAND FindElement {
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630",
+   "using": "id",
+   "value": "SEARCH_NUMBER"
+}
+[18.793][INFO]: Waiting for pending navigations...
+[18.827][INFO]: Done waiting for pending navigations. Status: ok
+[18.869][INFO]: Waiting for pending navigations...
+[18.882][INFO]: Done waiting for pending navigations. Status: ok
+[18.882][INFO]: RESPONSE FindElement {
+   "ELEMENT": "0.22216930360528142-2"
+}
+[18.887][INFO]: COMMAND TypeElement {
+   "id": "0.22216930360528142-2",
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630",
+   "text": "LEAU4908966",
+   "value": [ "L", "E", "A", "U", "4", "9", "0", "8", "9", "6", "6" ]
+}
+[18.887][INFO]: Waiting for pending navigations...
+[18.897][INFO]: Done waiting for pending navigations. Status: ok
+[20.471][INFO]: Waiting for pending navigations...
+[20.477][INFO]: Done waiting for pending navigations. Status: ok
+[20.477][INFO]: RESPONSE TypeElement
+[20.481][INFO]: COMMAND FindElement {
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630",
+   "using": "id",
+   "value": "container_btn"
+}
+[20.481][INFO]: Waiting for pending navigations...
+[20.493][INFO]: Done waiting for pending navigations. Status: ok
+[20.540][INFO]: Waiting for pending navigations...
+[20.554][INFO]: Done waiting for pending navigations. Status: ok
+[20.554][INFO]: RESPONSE FindElement {
+   "ELEMENT": "0.22216930360528142-3"
+}
+[20.558][INFO]: COMMAND ClickElement {
+   "id": "0.22216930360528142-3",
+   "sessionId": "79a1a9951b482d37f0bcc6a79a35b630"
+}
+[20.558][INFO]: Waiting for pending navigations...
+[20.567][INFO]: Done waiting for pending navigations. Status: ok
+[21.059][INFO]: Waiting for pending navigations...
+[21.090][INFO]: Done waiting for pending navigations. Status: ok
+[21.090][INFO]: RESPONSE ClickElement
+[47.534][INFO]: COMMAND GetSource {
+
+}
+[47.547][INFO]: Waiting for pending navigations...
+[47.578][INFO]: Done waiting for pending navigations. Status: ok
+[47.751][INFO]: Waiting for pending navigations...
+[47.789][INFO]: Done waiting for pending navigations. Status: ok
+[47.789][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html>\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\" dir=\"ltr\" lang=\"en-US\">\u003Chead>\u003Cmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\u003Cmeta name=\"viewport\" content=\"width=device-width, init..."
+[50.850][INFO]: COMMAND GetSource {
+
+}
+[50.850][INFO]: Waiting for pending navigations...
+[50.855][INFO]: Done waiting for pending navigations. Status: ok
+[50.889][INFO]: Waiting for pending navigations...
+[50.907][INFO]: Done waiting for pending navigations. Status: ok
+[50.907][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html>\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\" dir=\"ltr\" lang=\"en-US\">\u003Chead>\u003Cmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\u003Cmeta name=\"viewport\" content=\"width=device-width, init..."
+[60.193][INFO]: COMMAND GetSource {
+
+}
+[60.193][INFO]: Waiting for pending navigations...
+[60.209][INFO]: Done waiting for pending navigations. Status: ok
+[60.248][INFO]: Waiting for pending navigations...
+[60.263][INFO]: Done waiting for pending navigations. Status: ok
+[60.264][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html>\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\" dir=\"ltr\" lang=\"en-US\">\u003Chead>\u003Cmeta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\u003Cmeta name=\"viewport\" content=\"width=device-width, init..."

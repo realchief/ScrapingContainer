@@ -17,13 +17,13 @@ from selenium.webdriver.common.keys import Keys
 
 
 class SiteProductItem(scrapy.Item):
-    ContainerNumber = scrapy.Field()
-    ContainerSizeType = scrapy.Field()
-    Date = scrapy.Field()
-    ContainerMoves = scrapy.Field()
-    Location = scrapy.Field()
-    VesselVoyage = scrapy.Field()
-    VGM = scrapy.Field()
+    container_num = scrapy.Field()
+    container_sizetype = scrapy.Field()
+    date = scrapy.Field()
+    container_moves = scrapy.Field()
+    location = scrapy.Field()
+    vessel_voyage = scrapy.Field()
+    vgm = scrapy.Field()
 
 
 class NewEvents (scrapy.Spider):
@@ -50,14 +50,16 @@ class NewEvents (scrapy.Spider):
                       )
 
     def parse_product(self, response):
+
         prod_item = SiteProductItem()
-        prod_item['ContainerNumber'] = self._parse_ContainerNumber(response)
-        prod_item['ContainerSizeType'] = self._parse_ContainerSizeType(response)
-        prod_item['Date'] = self._parse_Date(response)
-        prod_item['ContainerMoves'] = self._parse_ContainerMoves(response)
-        prod_item['Location'] = self._parse_Location(response)
-        prod_item['VesselVoyage'] = self._parse_VesselVoyage(response)
-        prod_item['VGM'] = self._parse_VGM(response)
+
+        prod_item['container_num'] = self._parse_ContainerNumber(response)
+        prod_item['container_sizetype'] = self._parse_ContainerSizeType(response)
+        prod_item['date'] = self._parse_Date(response)
+        prod_item['container_moves'] = self._parse_ContainerMoves(response)
+        prod_item['location'] = self._parse_Location(response)
+        prod_item['vessel_voyage'] = self._parse_VesselVoyage(response)
+        prod_item['vgm'] = self._parse_VGM(response)
 
         return prod_item
 

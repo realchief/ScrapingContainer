@@ -42,28 +42,34 @@ class SiteProductItem(scrapy.Item):
     location = scrapy.Field()
     vessel_voyage = scrapy.Field()
     vgm = scrapy.Field()
+    weight = scrapy.Field()
+    origin = scrapy.Field()
+    landing_port = scrapy.Field()
+    TS_port = scrapy.Field()
+    discharging_port = scrapy.Field()
+    destination = scrapy.Field()
+    ServiceTerm = scrapy.Field()
 
 
 class NewEvents (scrapy.Spider):
 
     name = "scrapingdata"
     allowed_domains = ['www.shipmentlink.com', 'www.hmm.co.kr']
-    # start_urls = ['https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
-    #               'http://www.hmm.co.kr/cms/business/ebiz/trackTrace/trackTrace'
-    #               '/index.jsp?type=2&number=SESU2195470&is_quick=Y&quick_params=',
-    #               ]
-    start_urls = ['http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
+
+    start_urls = ['https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
+                  'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
                   'blFields=undefined&cnFields=undefined&numbers=&numbers='
                   '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
-                  '&numbers=&numbers=SESU2195470&numbers=&numbers=&numbers=&numbers='
-                  '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=']
+                  '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
+                  '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
+                  ]
+    # start_urls = ['http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
+    #               'blFields=undefined&cnFields=undefined&numbers=&numbers='
+    #               '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
+    #               '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
+    #               '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=']
 
     # start_urls = ['https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do']
-    # headers = {
-    #            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
-    #                          'Chrome/64.0.3282.186 Safari/537.36',
-    #            'Content-Type': 'application/x-www-form-urlencoded'
-    #            }
 
     def start_requests(self):
         for start_url in self.start_urls:
@@ -83,7 +89,7 @@ class NewEvents (scrapy.Spider):
 
                 if 'www.hmm.co.kr' in start_url:
                     form_data = {'number': 'SESU2195470', 'numbers': 'SESU2195470'}
-                    yield Request(url=start_url,
+                    yield Request(url=start_url.format(key),
                                   headers={
                                       'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)'
                                                     ' Chrome/64.0.3282.186 Safari/537.36',
@@ -107,6 +113,13 @@ class NewEvents (scrapy.Spider):
         prod_item['location'] = self._parse_Location(response)
         prod_item['vessel_voyage'] = self._parse_VesselVoyage(response)
         prod_item['vgm'] = self._parse_VGM(response)
+        prod_item['weight'] = self._parse_weight(response)
+        prod_item['origin'] = self._parse_origin(response)
+        prod_item['landing_port'] = self._parse_landing_port(response)
+        prod_item['TS_port'] = self._parse_TS_port(response)
+        prod_item['discharging_port'] = self._parse_discharging_port(response)
+        prod_item['destination'] = self._parse_destination(response)
+        prod_item['ServiceTerm'] = self._parse_ServiceTerm(response)
 
         return prod_item
 
@@ -114,7 +127,11 @@ class NewEvents (scrapy.Spider):
     def _parse_ContainerNumber(response):
         try:
             ContainerNumber = response.xpath('//table[@width="95%"][3]/tr[3]/td[1]//text()').extract()
-            return str(ContainerNumber[0]) if ContainerNumber else ' '
+            if ContainerNumber:
+                ContainerNumber = str(ContainerNumber[0])
+            if not ContainerNumber:
+                ContainerNumber = str(response.xpath('//td[@class="bor_L_none"]/a/font/u//text()')[0].extract())
+            return ContainerNumber if ContainerNumber else ' '
         except Exception as e:
             print('Error')
 
@@ -122,7 +139,11 @@ class NewEvents (scrapy.Spider):
     def _parse_ContainerSizeType(response):
         try:
             ContainerSizeType = response.xpath('//table[@width="95%"][3]/tr[3]/td[2]//text()').extract()
-            return str(ContainerSizeType[0]).strip() if ContainerSizeType else ' '
+            if ContainerSizeType:
+                ContainerSizeType = str(ContainerSizeType[0]).strip()
+            if not ContainerSizeType:
+                ContainerSizeType = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[18])
+            return ContainerSizeType if ContainerSizeType else ' '
         except Exception as e:
             print('Error')
 
@@ -130,7 +151,11 @@ class NewEvents (scrapy.Spider):
     def _parse_Date(response):
         try:
             Date = response.xpath('//table[@width="95%"][3]/tr[3]/td[3]//text()').extract()
-            return str(Date[0]).strip() if Date else ' '
+            if Date:
+                Date = str(Date[0]).strip()
+            if not Date:
+                Date = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[53])
+            return Date if Date else ' '
         except Exception as e:
             print('Error')
 
@@ -138,7 +163,11 @@ class NewEvents (scrapy.Spider):
     def _parse_ContainerMoves(response):
         try:
             ContainerMoves = response.xpath('//table[@width="95%"][3]/tr[3]/td[4]//text()').extract()
-            return str(ContainerMoves[0]).strip() if ContainerMoves else ' '
+            if ContainerMoves:
+                ContainerMoves = str(ContainerMoves[0]).strip()
+            if not ContainerMoves:
+                ContainerMoves = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[22])
+            return ContainerMoves if ContainerMoves else ' '
         except Exception as e:
             print('Error')
 
@@ -146,7 +175,11 @@ class NewEvents (scrapy.Spider):
     def _parse_Location(response):
         try:
             Location = response.xpath('//table[@width="95%"][3]/tr[3]/td[5]//text()').extract()
-            return str(Location[0]).strip() if Location else ' '
+            if Location:
+                Location = str(Location[0]).strip()
+            if not Location:
+                Location = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[21])
+            return Location if Location else ' '
         except Exception as e:
             print('Error')
 
@@ -154,7 +187,11 @@ class NewEvents (scrapy.Spider):
     def _parse_VesselVoyage(response):
         try:
             VesselVoyage = response.xpath('//table[@width="95%"][3]/tr[3]/td[6]//text()').extract()
-            return str(VesselVoyage[0]).strip() if VesselVoyage else ' '
+            if VesselVoyage:
+                VesselVoyage = str(VesselVoyage[0]).strip()
+            if not VesselVoyage:
+                VesselVoyage = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[57])
+            return VesselVoyage if VesselVoyage else ' '
         except Exception as e:
             print('Error')
 
@@ -163,6 +200,62 @@ class NewEvents (scrapy.Spider):
         try:
             VGM = response.xpath('//table[@width="95%"][3]/tr[3]/td[8]//text()').extract()
             return str(VGM[0]).strip() if VGM else ' '
+        except Exception as e:
+            print('Error')
+
+    @staticmethod
+    def _parse_weight(response):
+        try:
+            weight = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[19])
+            return weight if weight else ' '
+        except Exception as e:
+            print('Error')
+
+    @staticmethod
+    def _parse_origin(response):
+        try:
+            origin = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[1])
+            return origin if origin else ' '
+        except Exception as e:
+            print('Error')
+
+    @staticmethod
+    def _parse_landing_port(response):
+        try:
+            landing_port = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[2])
+            return landing_port if landing_port else ' '
+        except Exception as e:
+            print('Error')
+
+    @staticmethod
+    def _parse_TS_port(response):
+        try:
+            ts_port = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[3])
+            return ts_port if ts_port else ' '
+        except Exception as e:
+            print('Error')
+
+    @staticmethod
+    def _parse_discharging_port(response):
+        try:
+            charging_port = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[4])
+            return charging_port if charging_port else ' '
+        except Exception as e:
+            print('Error')
+
+    @staticmethod
+    def _parse_destination(response):
+        try:
+            destination = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[5])
+            return destination if destination else ' '
+        except Exception as e:
+            print('Error')
+
+    @staticmethod
+    def _parse_ServiceTerm(response):
+        try:
+            ServiceTerm = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[20])
+            return ServiceTerm.strip() if ServiceTerm else ' '
         except Exception as e:
             print('Error')
 

@@ -18,20 +18,20 @@ from selenium.webdriver.common.keys import Keys
 # driver_log_path = os.path.join(CWD, 'bin', 'driver.log')
 
 # keys = ['LEAU4908550', 'LEAU4908565', 'LEAU4908605', 'LEAU4908610', 'LEAU4908734', 'LEAU4908755']
-keys = ['SESU2195470', 'SESU2195253', 'SESU2195232', 'SESU2195227']
-# keys = []
-# try:
-#     with open(os.path.abspath('inputdata.csv'), 'r') as f:
-#         reader = csv.reader(f)
-#         for row in reader:
-#             keys.append(row[0])
-# except Exception as e:
-#     print('parse_csv Function => Got Error: {}'.format(e))
-#
-#     with open('/home/ubuntu/Marin-Guru/container_scraping/ScrapingContainer-MySQL/inputdata/inputdata.csv', 'r') as f:
-#         reader = csv.reader(f)
-#         for row in reader:
-#             keys.append(row[0])
+# keys = ['SESU2195470', 'SESU2195253', 'SESU2195232', 'SESU2195227']
+keys = []
+try:
+    with open(os.path.abspath('inputdata1.csv'), 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            keys.append(row[0])
+except Exception as e:
+    print('parse_csv Function => Got Error: {}'.format(e))
+
+    with open('/home/ubuntu/Marin-Guru/container_scraping/ScrapingContainer-MySQL/inputdata/inputdata1.csv', 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            keys.append(row[0])
 
 
 class SiteProductItem(scrapy.Item):
@@ -121,7 +121,8 @@ class NewEvents (scrapy.Spider):
         prod_item['destination'] = self._parse_destination(response)
         prod_item['ServiceTerm'] = self._parse_ServiceTerm(response)
 
-        return prod_item
+        if any(value for value in prod_item.values()):
+            return prod_item
 
     @staticmethod
     def _parse_ContainerNumber(response):
@@ -131,9 +132,9 @@ class NewEvents (scrapy.Spider):
                 ContainerNumber = str(ContainerNumber[0])
             if not ContainerNumber:
                 ContainerNumber = str(response.xpath('//td[@class="bor_L_none"]/a/font/u//text()')[0].extract())
-            return ContainerNumber if ContainerNumber else ' '
+            return ContainerNumber if ContainerNumber else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_ContainerSizeType(response):
@@ -143,9 +144,9 @@ class NewEvents (scrapy.Spider):
                 ContainerSizeType = str(ContainerSizeType[0]).strip()
             if not ContainerSizeType:
                 ContainerSizeType = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[18])
-            return ContainerSizeType if ContainerSizeType else ' '
+            return ContainerSizeType if ContainerSizeType else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_Date(response):
@@ -155,9 +156,9 @@ class NewEvents (scrapy.Spider):
                 Date = str(Date[0]).strip()
             if not Date:
                 Date = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[53])
-            return Date if Date else ' '
+            return Date if Date else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_ContainerMoves(response):
@@ -167,9 +168,9 @@ class NewEvents (scrapy.Spider):
                 ContainerMoves = str(ContainerMoves[0]).strip()
             if not ContainerMoves:
                 ContainerMoves = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[22])
-            return ContainerMoves if ContainerMoves else ' '
+            return ContainerMoves if ContainerMoves else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_Location(response):
@@ -179,9 +180,9 @@ class NewEvents (scrapy.Spider):
                 Location = str(Location[0]).strip()
             if not Location:
                 Location = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[21])
-            return Location if Location else ' '
+            return Location if Location else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_VesselVoyage(response):
@@ -191,73 +192,73 @@ class NewEvents (scrapy.Spider):
                 VesselVoyage = str(VesselVoyage[0]).strip()
             if not VesselVoyage:
                 VesselVoyage = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[57])
-            return VesselVoyage if VesselVoyage else ' '
+            return VesselVoyage if VesselVoyage else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_VGM(response):
         try:
             VGM = response.xpath('//table[@width="95%"][3]/tr[3]/td[8]//text()').extract()
-            return str(VGM[0]).strip() if VGM else ' '
+            return str(VGM[0]).strip() if VGM else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_weight(response):
         try:
             weight = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[19])
-            return weight if weight else ' '
+            return weight if weight else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_origin(response):
         try:
             origin = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[1])
-            return origin if origin else ' '
+            return origin if origin else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_landing_port(response):
         try:
             landing_port = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[2])
-            return landing_port if landing_port else ' '
+            return landing_port if landing_port else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_TS_port(response):
         try:
             ts_port = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[3])
-            return ts_port if ts_port else ' '
+            return ts_port if ts_port else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_discharging_port(response):
         try:
             charging_port = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[4])
-            return charging_port if charging_port else ' '
+            return charging_port if charging_port else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_destination(response):
         try:
             destination = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[5])
-            return destination if destination else ' '
+            return destination if destination else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
     @staticmethod
     def _parse_ServiceTerm(response):
         try:
             ServiceTerm = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[20])
-            return ServiceTerm.strip() if ServiceTerm else ' '
+            return ServiceTerm.strip() if ServiceTerm else None
         except Exception as e:
-            print('Error')
+            print('No Data')
 
 
 

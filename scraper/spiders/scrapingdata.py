@@ -20,19 +20,38 @@ from selenium.webdriver.common.keys import Keys
 # keys = ['LEAU4908550', 'LEAU4908565', 'LEAU4908605', 'LEAU4908610', 'LEAU4908734', 'LEAU4908755']
 # keys = ['SESU2195470', 'SESU2195253', 'SESU2195232', 'SESU2195227']
 # keys = ['SESU2198951']
-keys = []
+# keys = ['SESU2126118', 'SESU2204400', 'SESU2204400', 'SESU2204381', 'SESU2126118', 'SESU2126210', 'SESU2127412',
+#         'SESU2141684', 'SESU2141874']
+keys_EMC = []
+keys_HMM = []
+keys_COSCO = []
+keys_MAERSK = []
 try:
     with open(os.path.abspath('inputData.csv'), 'r') as f:
         reader = csv.reader(f)
         for row in reader:
-            keys.append(row[0])
+            if row[2] == "EMC":
+                keys_EMC.append(row[0])
+            if row[2] == "HMM":
+                keys_HMM.append(row[0])
+            if row[2] == "COSCO-SHA":
+                keys_COSCO.append(row[0])
+            if row[2] == "MAERSK":
+                keys_MAERSK.append(row[0])
 except Exception as e:
     print('parse_csv Function => Got Error: {}'.format(e))
 
     with open('/home/ubuntu/Marin-Guru/container_scraping/ScrapingContainer-MySQL/inputdata/inputData.csv', 'r') as f:
         reader = csv.reader(f)
         for row in reader:
-            keys.append(row[0])
+            if row[2] == "EMC":
+                keys_EMC.append(row[0])
+            if row[2] == "HMM":
+                keys_HMM.append(row[0])
+            if row[2] == "COSCO-SHA":
+                keys_COSCO.append(row[0])
+            if row[2] == "MAERSK":
+                keys_MAERSK.append(row[0])
 
 
 class SiteProductItem(scrapy.Item):
@@ -55,30 +74,24 @@ class SiteProductItem(scrapy.Item):
 class NewEvents (scrapy.Spider):
 
     name = "scrapingdata"
-    allowed_domains = ['www.shipmentlink.com', 'www.hmm.co.kr', 'elines.coscoshipping.com', 'www.cosco-usa.com/']
+    allowed_domains = ['www.shipmentlink.com', 'www.hmm.co.kr', 'elines.coscoshipping.com',
+                       'www.cosco-usa.com/', 'my.maerskline.com']
 
-    start_urls = ['https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
-                  'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
-                  'blFields=undefined&cnFields=undefined&numbers=&numbers='
-                  '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
-                  '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
-                  '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
-                  # 'https://my.maerskline.com/tracking/search?searchNumber={}'
+    start_urls = [
+        # 'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
+        # 'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
+        # 'blFields=undefined&cnFields=undefined&numbers=&numbers='
+        # '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
+        # '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
+        # '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
+        'https://my.maerskline.com/tracking/search?searchNumber={}'
                   ]
-    # start_urls = ['http://elines.coscoshipping.com/NewEBWeb/public/cargoTracking/cargoTracking.xhtml']
-    # start_urls = ['http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
-    #               'blFields=undefined&cnFields=undefined&numbers=&numbers='
-    #               '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
-    #               '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
-    #               '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=']
-
-    # start_urls = ['https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do']
-    # start_urls = ['https://my.maerskline.com/tracking/search?searchNumber={}']
 
     def start_requests(self):
         for start_url in self.start_urls:
-            for key in keys:
-                if 'www.shipmentlink.com' in start_url:
+
+            if 'www.shipmentlink.com' in start_url:
+                for key in keys_EMC:
                     form_data = {'CNTR': key, 'TYPE': 'CNTR', 'blFields': '1', 'cnFields': '1', 'is-quick': 'Y'}
                     yield Request(url=start_url,
                                   headers={
@@ -91,8 +104,9 @@ class NewEvents (scrapy.Spider):
                                   body=urlencode(form_data),
                                   dont_filter=True)
 
-                if 'www.hmm.co.kr' in start_url:
-                    form_data = {'number': 'SESU2195470', 'numbers': 'SESU2195470'}
+            if 'www.hmm.co.kr' in start_url:
+                for key in keys_HMM:
+                    form_data = {'number': key, 'numbers': key}
                     yield Request(url=start_url.format(key),
                                   headers={
                                       'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)'
@@ -106,7 +120,8 @@ class NewEvents (scrapy.Spider):
                                   body=urlencode(form_data),
                                   dont_filter=True)
 
-                if 'elines.coscoshipping.com' in start_url:
+            if 'elines.coscoshipping.com' in start_url:
+                for key in keys_COSCO:
                     form_data = {'mainForm': 'mainform', 'cargoTrackSearchId': 'CONTAINER', 'cargoTrackingPara': '1',
                                  'cnFields': 'SESU2198951', 'num': '0', 'onlyFirstAndLast': 'false',
                                  'num1': '1', 'num2': '0', 'num3': '0', 'num4': '0', 'num5': '0', 'num6': '0',
@@ -241,6 +256,11 @@ class NewEvents (scrapy.Spider):
                                   method='POST',
                                   body=urlencode(form_data),
                                   dont_filter=True)
+            if 'my.maerskline.com' in start_url:
+                for key in keys_MAERSK:
+                    yield Request(url=start_url.format(key),
+                                  callback=self.parse_product,
+                                  dont_filter=True)
 
     def parse_product(self, response):
 
@@ -270,8 +290,10 @@ class NewEvents (scrapy.Spider):
             ContainerNumber = response.xpath('//table[@width="95%"][3]/tr[3]/td[1]//text()').extract()
             if ContainerNumber:
                 ContainerNumber = str(ContainerNumber[0])
-            if not ContainerNumber:
+            if not ContainerNumber and response.xpath('//td[@class="bor_L_none"]/a/font/u//text()'):
                 ContainerNumber = str(response.xpath('//td[@class="bor_L_none"]/a/font/u//text()')[0].extract())
+            if not ContainerNumber and response.xpath('//span[@class="tracking_container_id"]//text()'):
+                ContainerNumber = str(response.xpath('//span[@class="tracking_container_id"]//text()')[0].extract())
             return ContainerNumber if ContainerNumber else None
         except Exception as e:
             print('No Data')
@@ -282,7 +304,7 @@ class NewEvents (scrapy.Spider):
             ContainerSizeType = response.xpath('//table[@width="95%"][3]/tr[3]/td[2]//text()').extract()
             if ContainerSizeType:
                 ContainerSizeType = str(ContainerSizeType[0]).strip()
-            if not ContainerSizeType:
+            if not ContainerSizeType and response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
                 ContainerSizeType = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[18])
             return ContainerSizeType if ContainerSizeType else None
         except Exception as e:
@@ -294,8 +316,10 @@ class NewEvents (scrapy.Spider):
             Date = response.xpath('//table[@width="95%"][3]/tr[3]/td[3]//text()').extract()
             if Date:
                 Date = str(Date[0]).strip()
-            if not Date:
+            if not Date and response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
                 Date = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[21])
+            if not Date and response.xpath('//span[@class="ETA-block"]//text()').extract():
+                Date = str(response.xpath('//span[@class="ETA-block"]//text()').extract()[1].strip())
             return Date if Date else None
         except Exception as e:
             print('No Data')
@@ -306,7 +330,7 @@ class NewEvents (scrapy.Spider):
             ContainerMoves = response.xpath('//table[@width="95%"][3]/tr[3]/td[4]//text()').extract()
             if ContainerMoves:
                 ContainerMoves = str(ContainerMoves[0]).strip()
-            if not ContainerMoves:
+            if not ContainerMoves and response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
                 ContainerMoves = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[22])
             return ContainerMoves if ContainerMoves else None
         except Exception as e:
@@ -318,7 +342,7 @@ class NewEvents (scrapy.Spider):
             Location = response.xpath('//table[@width="95%"][3]/tr[3]/td[5]//text()').extract()
             if Location:
                 Location = str(Location[0]).strip()
-            if not Location:
+            if not Location and response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
                 Location = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[2])
             return Location if Location else None
         except Exception as e:
@@ -330,8 +354,10 @@ class NewEvents (scrapy.Spider):
             VesselVoyage = response.xpath('//table[@width="95%"][3]/tr[3]/td[6]//text()').extract()
             if VesselVoyage:
                 VesselVoyage = str(VesselVoyage[0]).strip()
-            if not VesselVoyage:
+            if not VesselVoyage and response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
                 VesselVoyage = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[57])
+            if not VesselVoyage and response.xpath('//span[@class="ETA-block"]//text()').extract():
+                VesselVoyage = str(response.xpath('//span[@class="ETA-block"]//text()').extract()[0].strip())
             return VesselVoyage if VesselVoyage else None
         except Exception as e:
             print('No Data')
@@ -363,7 +389,10 @@ class NewEvents (scrapy.Spider):
     @staticmethod
     def _parse_landing_port(response):
         try:
-            landing_port = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[2])
+            if response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
+                landing_port = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[2])
+            if not landing_port and response.xpath('//tr[@class="container-row"]/td//text()').extract():
+                landing_port = str(response.xpath('//tr[@class="container-row"]/td//text()').extract()[16])
             return landing_port if landing_port else None
         except Exception as e:
             print('No Data')

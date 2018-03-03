@@ -78,12 +78,12 @@ class NewEvents (scrapy.Spider):
                        'www.cosco-usa.com/', 'my.maerskline.com']
 
     start_urls = [
-        # 'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
-        # 'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
-        # 'blFields=undefined&cnFields=undefined&numbers=&numbers='
-        # '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
-        # '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
-        # '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
+        'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
+        'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
+        'blFields=undefined&cnFields=undefined&numbers=&numbers='
+        '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
+        '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
+        '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
         'https://my.maerskline.com/tracking/search?searchNumber={}'
                   ]
 

@@ -1,4 +1,4 @@
-[0.998][INFO]: COMMAND InitSession {
+[1.000][INFO]: COMMAND InitSession {
    "capabilities": {
       "alwaysMatch": {
          "browserName": "chrome",
@@ -22,7 +22,7 @@
       "version": ""
    }
 }
-[1.026][INFO]: Populating Preferences file: {
+[1.001][INFO]: Populating Preferences file: {
    "alternate_error_pages": {
       "enabled": false
    },
@@ -76,7 +76,7 @@
       "enabled": false
    }
 }
-[1.026][INFO]: Populating Local State file: {
+[1.001][INFO]: Populating Local State file: {
    "background_mode": {
       "enabled": false
    },
@@ -86,16 +86,16 @@
       }
    }
 }
-[1.026][INFO]: Launching chrome: /opt/google/chrome/google-chrome --disable-background-networking --disable-browser-side-navigation --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --disable-web-resources --enable-automation --enable-logging --force-fieldtrials=SiteIsolationExtensions/Control --ignore-certificate-errors --load-extension=/tmp/.org.chromium.Chromium.EqxtDa/internal --log-level=0 --metrics-recording-only --no-first-run --password-store=basic --remote-debugging-port=12717 --safebrowsing-disable-auto-update --test-type=webdriver --use-mock-keychain --user-data-dir=/tmp/.org.chromium.Chromium.GAZGmC data:,
-[1.697][INFO]: resolved localhost to ["127.0.0.1"]
-[1.995][INFO]: RESPONSE InitSession {
+[1.001][INFO]: Launching chrome: /opt/google/chrome/google-chrome --disable-background-networking --disable-browser-side-navigation --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --disable-web-resources --enable-automation --enable-logging --force-fieldtrials=SiteIsolationExtensions/Control --ignore-certificate-errors --load-extension=/tmp/.org.chromium.Chromium.A2qa3S/internal --log-level=0 --metrics-recording-only --no-first-run --password-store=basic --remote-debugging-port=12245 --safebrowsing-disable-auto-update --test-type=webdriver --use-mock-keychain --user-data-dir=/tmp/.org.chromium.Chromium.RpM3Cy data:,
+[1.729][INFO]: resolved localhost to ["127.0.0.1"]
+[1.931][INFO]: RESPONSE InitSession {
    "acceptSslCerts": true,
    "applicationCacheEnabled": false,
    "browserConnectionEnabled": false,
    "browserName": "chrome",
    "chrome": {
       "chromedriverVersion": "2.33.506092 (733a02544d189eeb751fe0d7ddca79a0ee28cce4)",
-      "userDataDir": "/tmp/.org.chromium.Chromium.GAZGmC"
+      "userDataDir": "/tmp/.org.chromium.Chromium.RpM3Cy"
    },
    "cssSelectorsEnabled": true,
    "databaseEnabled": false,
@@ -113,50 +113,156 @@
    "takesHeapSnapshot": true,
    "~~~": "..."
 }
-[1.997][INFO]: COMMAND MaximizeWindow {
-   "sessionId": "1cdb218e2f7ebcbac4b7b320b94446fa",
+[1.935][INFO]: COMMAND MaximizeWindow {
+   "sessionId": "b1246b8e102948a1030c45a6122d7595",
    "windowHandle": "current"
 }
-[1.997][INFO]: resolved localhost to ["127.0.0.1"]
-[2.103][INFO]: RESPONSE MaximizeWindow
-[2.106][INFO]: COMMAND SetImplicitWait {
+[1.935][INFO]: resolved localhost to ["127.0.0.1"]
+[2.063][INFO]: RESPONSE MaximizeWindow
+[2.070][INFO]: COMMAND SetImplicitWait {
    "ms": 100000.0,
-   "sessionId": "1cdb218e2f7ebcbac4b7b320b94446fa"
+   "sessionId": "b1246b8e102948a1030c45a6122d7595"
 }
-[2.106][INFO]: RESPONSE SetImplicitWait
-[2.108][INFO]: COMMAND SetTimeout {
+[2.071][INFO]: RESPONSE SetImplicitWait
+[2.077][INFO]: COMMAND SetTimeout {
    "pageLoad": 100000,
-   "sessionId": "1cdb218e2f7ebcbac4b7b320b94446fa"
+   "sessionId": "b1246b8e102948a1030c45a6122d7595"
 }
-[2.109][INFO]: RESPONSE SetTimeout unknown error: 'ms' must be a double
+[2.079][INFO]: RESPONSE SetTimeout unknown error: 'ms' must be a double
   (Session info: chrome=64.0.3282.186)
-[2.113][INFO]: COMMAND SetTimeout {
+[2.088][INFO]: COMMAND SetTimeout {
    "ms": 100000.0,
-   "sessionId": "1cdb218e2f7ebcbac4b7b320b94446fa",
+   "sessionId": "b1246b8e102948a1030c45a6122d7595",
    "type": "page load"
 }
-[2.113][INFO]: RESPONSE SetTimeout
-[2.115][INFO]: COMMAND Navigate {
-   "sessionId": "1cdb218e2f7ebcbac4b7b320b94446fa",
-   "url": "https://www.evergreen-marine.com/"
+[2.089][INFO]: RESPONSE SetTimeout
+[2.093][INFO]: COMMAND Navigate {
+   "sessionId": "b1246b8e102948a1030c45a6122d7595",
+   "url": "http://www.cosco-usa.com/"
 }
-[2.115][INFO]: Waiting for pending navigations...
-[2.210][INFO]: Done waiting for pending navigations. Status: ok
-[3.988][INFO]: Waiting for pending navigations...
-[7.119][INFO]: Done waiting for pending navigations. Status: ok
-[7.119][INFO]: RESPONSE Navigate
-[7.121][INFO]: COMMAND FindElement {
-   "sessionId": "1cdb218e2f7ebcbac4b7b320b94446fa",
+[2.093][INFO]: Waiting for pending navigations...
+[2.166][INFO]: Done waiting for pending navigations. Status: ok
+[3.712][INFO]: Waiting for pending navigations...
+[5.612][INFO]: Done waiting for pending navigations. Status: ok
+[5.612][INFO]: RESPONSE Navigate
+[5.617][INFO]: COMMAND FindElement {
+   "sessionId": "b1246b8e102948a1030c45a6122d7595",
    "using": "xpath",
-   "value": "//input[@name=\"CargoNO\"]"
+   "value": "//input[@value=\"bycont\"]"
 }
-[7.121][INFO]: Waiting for pending navigations...
-[7.147][INFO]: Done waiting for pending navigations. Status: ok
-[107.177][INFO]: Waiting for pending navigations...
-[107.177][INFO]: Done waiting for pending navigations. Status: ok
-[107.177][INFO]: RESPONSE FindElement no such element: Unable to locate element: {"method":"xpath","selector":"//input[@name="CargoNO"]"}
-  (Session info: chrome=64.0.3282.186)
-[107.327][INFO]: COMMAND QuitAll {
+[5.617][INFO]: Waiting for pending navigations...
+[5.636][INFO]: Done waiting for pending navigations. Status: ok
+[5.659][INFO]: Waiting for pending navigations...
+[5.659][INFO]: Done waiting for pending navigations. Status: ok
+[5.659][INFO]: RESPONSE FindElement {
+   "ELEMENT": "0.18715555951645002-1"
+}
+[5.662][INFO]: COMMAND ClickElement {
+   "id": "0.18715555951645002-1",
+   "sessionId": "b1246b8e102948a1030c45a6122d7595"
+}
+[5.662][INFO]: Waiting for pending navigations...
+[5.663][INFO]: Done waiting for pending navigations. Status: ok
+[5.728][INFO]: Waiting for pending navigations...
+[5.729][INFO]: Done waiting for pending navigations. Status: ok
+[5.729][INFO]: RESPONSE ClickElement
+[5.732][INFO]: COMMAND FindElement {
+   "sessionId": "b1246b8e102948a1030c45a6122d7595",
+   "using": "id",
+   "value": "idSearchString"
+}
+[5.732][INFO]: Waiting for pending navigations...
+[5.734][INFO]: Done waiting for pending navigations. Status: ok
+[5.753][INFO]: Waiting for pending navigations...
+[5.753][INFO]: Done waiting for pending navigations. Status: ok
+[5.753][INFO]: RESPONSE FindElement {
+   "ELEMENT": "0.18715555951645002-2"
+}
+[5.756][INFO]: COMMAND TypeElement {
+   "id": "0.18715555951645002-2",
+   "sessionId": "b1246b8e102948a1030c45a6122d7595",
+   "text": "SESU4914398",
+   "value": [ "S", "E", "S", "U", "4", "9", "1", "4", "3", "9", "8" ]
+}
+[5.756][INFO]: Waiting for pending navigations...
+[5.757][INFO]: Done waiting for pending navigations. Status: ok
+[6.022][INFO]: Waiting for pending navigations...
+[6.024][INFO]: Done waiting for pending navigations. Status: ok
+[6.024][INFO]: RESPONSE TypeElement
+[6.027][INFO]: COMMAND FindElement {
+   "sessionId": "b1246b8e102948a1030c45a6122d7595",
+   "using": "xpath",
+   "value": "//img[@alt=\"Search...\"]"
+}
+[6.027][INFO]: Waiting for pending navigations...
+[6.028][INFO]: Done waiting for pending navigations. Status: ok
+[6.047][INFO]: Waiting for pending navigations...
+[6.049][INFO]: Done waiting for pending navigations. Status: ok
+[6.049][INFO]: RESPONSE FindElement {
+   "ELEMENT": "0.18715555951645002-3"
+}
+[6.051][INFO]: COMMAND ClickElement {
+   "id": "0.18715555951645002-3",
+   "sessionId": "b1246b8e102948a1030c45a6122d7595"
+}
+[6.051][INFO]: Waiting for pending navigations...
+[6.052][INFO]: Done waiting for pending navigations. Status: ok
+[6.274][INFO]: Waiting for pending navigations...
+[6.318][INFO]: Done waiting for pending navigations. Status: ok
+[6.318][INFO]: RESPONSE ClickElement
+[206.535][INFO]: COMMAND GetSource {
 
 }
-[107.378][INFO]: RESPONSE QuitAll
+[206.599][INFO]: Waiting for pending navigations...
+[206.810][INFO]: Done waiting for pending navigations. Status: ok
+[206.837][INFO]: Waiting for pending navigations...
+[206.840][INFO]: Done waiting for pending navigations. Status: ok
+[206.840][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\">\u003Chead>\n\t\u003Ctitle>COSCO Shipping Lines North America, Inc.\u003C/title>\n        \u003Cmeta http-equiv=\"re..."
+[206.852][INFO]: COMMAND GetSource {
+
+}
+[206.852][INFO]: Waiting for pending navigations...
+[206.854][INFO]: Done waiting for pending navigations. Status: ok
+[206.868][INFO]: Waiting for pending navigations...
+[206.870][INFO]: Done waiting for pending navigations. Status: ok
+[206.870][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\">\u003Chead>\n\t\u003Ctitle>COSCO Shipping Lines North America, Inc.\u003C/title>\n        \u003Cmeta http-equiv=\"re..."
+[206.879][INFO]: COMMAND GetSource {
+
+}
+[206.879][INFO]: Waiting for pending navigations...
+[206.879][INFO]: Done waiting for pending navigations. Status: ok
+[206.889][INFO]: Waiting for pending navigations...
+[206.890][INFO]: Done waiting for pending navigations. Status: ok
+[206.890][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\">\u003Chead>\n\t\u003Ctitle>COSCO Shipping Lines North America, Inc.\u003C/title>\n        \u003Cmeta http-equiv=\"re..."
+[206.911][INFO]: COMMAND GetSource {
+
+}
+[206.911][INFO]: Waiting for pending navigations...
+[206.912][INFO]: Done waiting for pending navigations. Status: ok
+[206.927][INFO]: Waiting for pending navigations...
+[206.930][INFO]: Done waiting for pending navigations. Status: ok
+[206.930][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\">\u003Chead>\n\t\u003Ctitle>COSCO Shipping Lines North America, Inc.\u003C/title>\n        \u003Cmeta http-equiv=\"re..."
+[206.940][INFO]: COMMAND GetSource {
+
+}
+[206.940][INFO]: Waiting for pending navigations...
+[206.941][INFO]: Done waiting for pending navigations. Status: ok
+[206.954][INFO]: Waiting for pending navigations...
+[206.955][INFO]: Done waiting for pending navigations. Status: ok
+[206.955][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\">\u003Chead>\n\t\u003Ctitle>COSCO Shipping Lines North America, Inc.\u003C/title>\n        \u003Cmeta http-equiv=\"re..."
+[206.964][INFO]: COMMAND GetSource {
+
+}
+[206.964][INFO]: Waiting for pending navigations...
+[206.965][INFO]: Done waiting for pending navigations. Status: ok
+[206.974][INFO]: Waiting for pending navigations...
+[206.974][INFO]: Done waiting for pending navigations. Status: ok
+[206.975][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\">\u003Chead>\n\t\u003Ctitle>COSCO Shipping Lines North America, Inc.\u003C/title>\n        \u003Cmeta http-equiv=\"re..."
+[238.021][INFO]: COMMAND GetSource {
+
+}
+[238.021][INFO]: Waiting for pending navigations...
+[238.024][INFO]: Done waiting for pending navigations. Status: ok
+[238.035][INFO]: Waiting for pending navigations...
+[238.035][INFO]: Done waiting for pending navigations. Status: ok
+[238.036][INFO]: RESPONSE GetSource "\u003C!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\u003Chtml xmlns=\"http://www.w3.org/1999/xhtml\">\u003Chead>\n\t\u003Ctitle>COSCO Shipping Lines North America, Inc.\u003C/title>\n        \u003Cmeta http-equiv=\"re..."

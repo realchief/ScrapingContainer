@@ -8,51 +8,53 @@ import csv
 import os
 import time
 import requests
+from selenium import webdriver
 
-# from pyvirtualdisplay import Display
-# CWD = os.path.dirname(os.path.abspath(__file__))
-# driver_path = os.path.join(CWD, 'bin', 'chromedriver')
-# driver_log_path = os.path.join(CWD, 'bin', 'driver.log')
+
+CWD = os.path.dirname(os.path.abspath(__file__))
+driver_path = os.path.join(CWD, 'bin', 'chromedriver')
+driver_log_path = os.path.join(CWD, 'bin', 'driver.log')
 
 keys_EMC = []
 keys_HMM = []
-keys_COSCO = []
+keys_COSCO = ['SESU4914398']
+# keys_COSCO = []
 keys_MAERSK = []
 keys_ZIM = []
 # keys_ZIM = ['TCKU1509890']
 keys_YANG = ['SESU2127602', 'SESU2127618', 'SESU2127665', 'SESU2127670', 'SESU2127686', 'SESU2127691']
 
-try:
-    with open(os.path.abspath('inputData.csv'), 'r') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if row[2] == "EMC":
-                keys_EMC.append(row[0])
-            if row[2] == "HMM":
-                keys_HMM.append(row[0])
-            if row[2] == "COSCO-SHA":
-                keys_COSCO.append(row[0])
-            if row[2] == "MAERSK":
-                keys_MAERSK.append(row[0])
-            if row[2] == "ZIM":
-                keys_ZIM.append(row[0])
-
-except Exception as e:
-    print('parse_csv Function => Got Error: {}'.format(e))
-
-    with open('/home/ubuntu/Marin-Guru/container_scraping/ScrapingContainer-MySQL/inputdata/inputData.csv', 'r') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if row[2] == "EMC":
-                keys_EMC.append(row[0])
-            if row[2] == "HMM":
-                keys_HMM.append(row[0])
-            if row[2] == "COSCO-SHA":
-                keys_COSCO.append(row[0])
-            if row[2] == "MAERSK":
-                keys_MAERSK.append(row[0])
-            if row[2] == "ZIM":
-                keys_ZIM.append(row[0])
+# try:
+#     with open(os.path.abspath('inputData.csv'), 'r') as f:
+#         reader = csv.reader(f)
+#         for row in reader:
+#             if row[2] == "EMC":
+#                 keys_EMC.append(row[0])
+#             if row[2] == "HMM":
+#                 keys_HMM.append(row[0])
+#             if row[2] == "COSCO-SHA":
+#                 keys_COSCO.append(row[0])
+#             if row[2] == "MAERSK":
+#                 keys_MAERSK.append(row[0])
+#             if row[2] == "ZIM":
+#                 keys_ZIM.append(row[0])
+#
+# except Exception as e:
+#     print('parse_csv Function => Got Error: {}'.format(e))
+#
+#     with open('/home/ubuntu/Marin-Guru/container_scraping/ScrapingContainer-MySQL/inputdata/inputData.csv', 'r') as f:
+#         reader = csv.reader(f)
+#         for row in reader:
+#             if row[2] == "EMC":
+#                 keys_EMC.append(row[0])
+#             if row[2] == "HMM":
+#                 keys_HMM.append(row[0])
+#             if row[2] == "COSCO-SHA":
+#                 keys_COSCO.append(row[0])
+#             if row[2] == "MAERSK":
+#                 keys_MAERSK.append(row[0])
+#             if row[2] == "ZIM":
+#                 keys_ZIM.append(row[0])
 
 
 class SiteProductItem(scrapy.Item):
@@ -79,18 +81,18 @@ class NewEvents (scrapy.Spider):
                        'www.cosco-usa.com/', 'my.maerskline.com', 'www.zim.com']
 
     # start_urls = ['http://www.zim.com/pages/findcontainer.aspx?searchvalue1=TCKU1509890']
-
-    start_urls = [
-        'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
-        'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
-        'blFields=undefined&cnFields=undefined&numbers=&numbers='
-        '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
-        '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
-        '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
-        'https://my.maerskline.com/tracking/search?searchNumber={}',
-        'http://www.zim.com/pages/findcontainer.aspx?searchvalue1={}',
-        'http://www.yangming.com/e-service/Track_Trace/mul_ctnr.aspx?str={},&rdolType=CT'
-                  ]
+    start_urls = ['http://www.cosco-usa.com/']
+    # start_urls = [
+    #     'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
+    #     'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
+    #     'blFields=undefined&cnFields=undefined&numbers=&numbers='
+    #     '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
+    #     '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
+    #     '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
+    #     'https://my.maerskline.com/tracking/search?searchNumber={}',
+    #     'http://www.zim.com/pages/findcontainer.aspx?searchvalue1={}',
+    #     'http://www.yangming.com/e-service/Track_Trace/mul_ctnr.aspx?str={},&rdolType=CT'
+    #               ]
 
     def start_requests(self):
         for start_url in self.start_urls:
@@ -280,6 +282,29 @@ class NewEvents (scrapy.Spider):
                     yield Request(url=start_url.format(key),
                                   callback=self.parse_product,
                                   dont_filter=True)
+            if "cosco-usa.com" in start_url:
+                options = webdriver.ChromeOptions()
+                # options.add_argument('headless')
+                browser = webdriver.Chrome(
+                    executable_path=driver_path,
+                    service_log_path=driver_log_path,
+                    chrome_options=options
+                )
+                browser.maximize_window()
+                browser.implicitly_wait(100)
+                browser.set_page_load_timeout(100)
+                browser.get(start_url)
+                search_type = browser.find_element_by_xpath('//input[@value="bycont"]')
+                if search_type:
+                    search_type.click()
+                search_input = browser.find_element_by_id("idSearchString")
+                if search_input:
+                    search_input.send_keys('SESU4914398')
+                search_button = browser.find_element_by_xpath('//img[@alt="Search..."]')
+                if search_button:
+                    search_button.click()
+                time.sleep(200)
+                page_content = browser.page_source
 
     def parse_product(self, response):
 

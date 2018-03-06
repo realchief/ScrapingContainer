@@ -10,22 +10,17 @@ import time
 import requests
 
 # from pyvirtualdisplay import Display
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
 # CWD = os.path.dirname(os.path.abspath(__file__))
 # driver_path = os.path.join(CWD, 'bin', 'chromedriver')
 # driver_log_path = os.path.join(CWD, 'bin', 'driver.log')
 
-# keys = ['LEAU4908550', 'LEAU4908565', 'LEAU4908605', 'LEAU4908610', 'LEAU4908734', 'LEAU4908755']
-# keys = ['SESU2195470', 'SESU2195253', 'SESU2195232', 'SESU2195227']
-# keys = ['SESU2198951']
-# keys = ['SESU2126118', 'SESU2204400', 'SESU2204400', 'SESU2204381', 'SESU2126118', 'SESU2126210', 'SESU2127412',
-#         'SESU2141684', 'SESU2141874']
 keys_EMC = []
 keys_HMM = []
 keys_COSCO = []
 keys_MAERSK = []
+keys_ZIM = []
+# keys_ZIM = ['TCKU1509890']
+
 try:
     with open(os.path.abspath('inputData.csv'), 'r') as f:
         reader = csv.reader(f)
@@ -38,6 +33,9 @@ try:
                 keys_COSCO.append(row[0])
             if row[2] == "MAERSK":
                 keys_MAERSK.append(row[0])
+            if row[2] == "ZIM":
+                keys_ZIM.append(row[0])
+
 except Exception as e:
     print('parse_csv Function => Got Error: {}'.format(e))
 
@@ -52,6 +50,8 @@ except Exception as e:
                 keys_COSCO.append(row[0])
             if row[2] == "MAERSK":
                 keys_MAERSK.append(row[0])
+            if row[2] == "ZIM":
+                keys_ZIM.append(row[0])
 
 
 class SiteProductItem(scrapy.Item):
@@ -75,7 +75,9 @@ class NewEvents (scrapy.Spider):
 
     name = "scrapingdata"
     allowed_domains = ['www.shipmentlink.com', 'www.hmm.co.kr', 'elines.coscoshipping.com',
-                       'www.cosco-usa.com/', 'my.maerskline.com']
+                       'www.cosco-usa.com/', 'my.maerskline.com', 'www.zim.com']
+
+    # start_urls = ['http://www.zim.com/pages/findcontainer.aspx?searchvalue1=TCKU1509890']
 
     start_urls = [
         'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
@@ -84,7 +86,8 @@ class NewEvents (scrapy.Spider):
         '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
         '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
         '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
-        'https://my.maerskline.com/tracking/search?searchNumber={}'
+        'https://my.maerskline.com/tracking/search?searchNumber={}',
+        'http://www.zim.com/pages/findcontainer.aspx?searchvalue1={}'
                   ]
 
     def start_requests(self):
@@ -261,6 +264,15 @@ class NewEvents (scrapy.Spider):
                     yield Request(url=start_url.format(key),
                                   callback=self.parse_product,
                                   dont_filter=True)
+            if 'zim.com' in start_url:
+                for key in keys_ZIM:
+                    yield Request(url=start_url.format(key),
+                                  headers={
+                                      'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                                                    'Chrome/64.0.3282.186 Safari/537.36'
+                                  },
+                                  callback=self.parse_product,
+                                  dont_filter=True)
 
     def parse_product(self, response):
 
@@ -428,12 +440,3 @@ class NewEvents (scrapy.Spider):
             return ServiceTerm.strip() if ServiceTerm else None
         except Exception as e:
             print('No Data')
-
-
-
-
-
-
-
-
-

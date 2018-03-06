@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5dd9561-a4c7-4234-a007-1952b8276491" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/spiders/bin/driver.log" afterPath="$PROJECT_DIR$/scraper/spiders/bin/driver.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scraper/spiders/scrapingdata.py" afterPath="$PROJECT_DIR$/scraper/spiders/scrapingdata.py" />
     </list>
@@ -15,7 +14,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ScrapingPrice_MySQL$scrapingdata.coverage" NAME="scrapingdata Coverage Results" MODIFIED="1518947873720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scraper/spiders" />
-    <SUITE FILE_PATH="coverage/ScrapingContainer_MySQL$scrapingdata.coverage" NAME="scrapingdata Coverage Results" MODIFIED="1520342471129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scraper/spiders" />
+    <SUITE FILE_PATH="coverage/ScrapingContainer_MySQL$scrapingdata.coverage" NAME="scrapingdata Coverage Results" MODIFIED="1520350540353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scraper/spiders" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -42,15 +41,15 @@
       <file leaf-file-name="scrapingdata.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="306" column="0" lean-forward="false" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
+            <state relative-caret-position="81">
+              <caret line="68" column="30" lean-forward="true" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-                <element signature="e#3530#4337#0" expanded="false" />
-                <element signature="e#4400#5363#0" expanded="false" />
-                <element signature="e#5437#24709#0" expanded="false" />
-                <element signature="e#24775#24974#0" expanded="false" />
-                <element signature="e#25030#25522#0" expanded="false" />
+                <element signature="e#4529#5336#0" expanded="false" />
+                <element signature="e#5399#6362#0" expanded="false" />
+                <element signature="e#6436#25708#0" expanded="false" />
+                <element signature="e#25774#25973#0" expanded="false" />
+                <element signature="e#26029#26521#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -143,6 +142,13 @@
               <item name="scraper" type="462c0819:PsiDirectoryNode" />
               <item name="spiders" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ScrapingContainer-MySQL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ScrapingContainer-MySQL" type="462c0819:PsiDirectoryNode" />
+              <item name="scraper" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -203,6 +209,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="47" y="73" width="1635" height="1062" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23818526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -210,11 +217,11 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3481081" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45621622" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2345946" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3718919" sideWeight="0.49779457" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44756758" sideWeight="0.49779457" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SFDX" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -245,23 +252,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py</url>
-          <line>312</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py</url>
-          <line>333</line>
-          <option name="timeStamp" value="89" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py</url>
-          <line>364</line>
+          <line>391</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py</url>
-          <line>306</line>
-          <option name="timeStamp" value="101" />
+          <line>323</line>
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -271,15 +268,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="102" />
+      <option name="time" value="117" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="search_type" language="Python" />
-        <watch expression="search_input" language="Python" />
-        <watch expression="browser.page_source" language="Python" />
-        <watch expression="browser.page_source" language="Python" />
-        <watch expression="browser.page_source" language="Python" />
       </configuration>
     </watches-manager>
   </component>
@@ -290,11 +283,11 @@
           <caret line="56" column="33" lean-forward="true" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#3530#4337#0" expanded="false" />
-            <element signature="e#4400#5363#0" expanded="false" />
-            <element signature="e#5437#24709#0" expanded="false" />
-            <element signature="e#24775#24974#0" expanded="false" />
-            <element signature="e#25030#25522#0" expanded="false" />
+            <element signature="e#4529#5336#0" expanded="false" />
+            <element signature="e#5399#6362#0" expanded="false" />
+            <element signature="e#6436#25708#0" expanded="false" />
+            <element signature="e#25774#25973#0" expanded="false" />
+            <element signature="e#26029#26521#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -383,11 +376,11 @@
           <caret line="57" column="38" lean-forward="true" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#3530#4337#0" expanded="false" />
-            <element signature="e#4400#5363#0" expanded="false" />
-            <element signature="e#5437#24709#0" expanded="false" />
-            <element signature="e#24775#24974#0" expanded="false" />
-            <element signature="e#25030#25522#0" expanded="false" />
+            <element signature="e#4529#5336#0" expanded="false" />
+            <element signature="e#5399#6362#0" expanded="false" />
+            <element signature="e#6436#25708#0" expanded="false" />
+            <element signature="e#25774#25973#0" expanded="false" />
+            <element signature="e#26029#26521#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -427,11 +420,11 @@
           <caret line="36" column="61" lean-forward="false" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="61" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#3530#4337#0" expanded="false" />
-            <element signature="e#4400#5363#0" expanded="false" />
-            <element signature="e#5437#24709#0" expanded="false" />
-            <element signature="e#24775#24974#0" expanded="false" />
-            <element signature="e#25030#25522#0" expanded="false" />
+            <element signature="e#4529#5336#0" expanded="false" />
+            <element signature="e#5399#6362#0" expanded="false" />
+            <element signature="e#6436#25708#0" expanded="false" />
+            <element signature="e#25774#25973#0" expanded="false" />
+            <element signature="e#26029#26521#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -471,11 +464,11 @@
           <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#3530#4337#0" expanded="false" />
-            <element signature="e#4400#5363#0" expanded="false" />
-            <element signature="e#5437#24709#0" expanded="false" />
-            <element signature="e#24775#24974#0" expanded="false" />
-            <element signature="e#25030#25522#0" expanded="false" />
+            <element signature="e#4529#5336#0" expanded="false" />
+            <element signature="e#5399#6362#0" expanded="false" />
+            <element signature="e#6436#25708#0" expanded="false" />
+            <element signature="e#25774#25973#0" expanded="false" />
+            <element signature="e#26029#26521#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -494,11 +487,11 @@
           <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#3530#4337#0" expanded="false" />
-            <element signature="e#4400#5363#0" expanded="false" />
-            <element signature="e#5437#24709#0" expanded="false" />
-            <element signature="e#24775#24974#0" expanded="false" />
-            <element signature="e#25030#25522#0" expanded="false" />
+            <element signature="e#4529#5336#0" expanded="false" />
+            <element signature="e#5399#6362#0" expanded="false" />
+            <element signature="e#6436#25708#0" expanded="false" />
+            <element signature="e#25774#25973#0" expanded="false" />
+            <element signature="e#26029#26521#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -538,11 +531,11 @@
           <caret line="97" column="68" lean-forward="false" selection-start-line="97" selection-start-column="68" selection-end-line="97" selection-end-column="68" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#3530#4337#0" expanded="false" />
-            <element signature="e#4400#5363#0" expanded="false" />
-            <element signature="e#5437#24709#0" expanded="false" />
-            <element signature="e#24775#24974#0" expanded="false" />
-            <element signature="e#25030#25522#0" expanded="false" />
+            <element signature="e#4529#5336#0" expanded="false" />
+            <element signature="e#5399#6362#0" expanded="false" />
+            <element signature="e#6436#25708#0" expanded="false" />
+            <element signature="e#25774#25973#0" expanded="false" />
+            <element signature="e#26029#26521#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -575,11 +568,11 @@
           <caret line="97" column="68" lean-forward="true" selection-start-line="97" selection-start-column="68" selection-end-line="97" selection-end-column="68" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#3530#4337#0" expanded="false" />
-            <element signature="e#4400#5363#0" expanded="false" />
-            <element signature="e#5437#24709#0" expanded="false" />
-            <element signature="e#24775#24974#0" expanded="false" />
-            <element signature="e#25030#25522#0" expanded="false" />
+            <element signature="e#4529#5336#0" expanded="false" />
+            <element signature="e#5399#6362#0" expanded="false" />
+            <element signature="e#6436#25708#0" expanded="false" />
+            <element signature="e#25774#25973#0" expanded="false" />
+            <element signature="e#26029#26521#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -699,15 +692,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="306" column="0" lean-forward="false" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
+        <state relative-caret-position="81">
+          <caret line="68" column="30" lean-forward="true" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#3530#4337#0" expanded="false" />
-            <element signature="e#4400#5363#0" expanded="false" />
-            <element signature="e#5437#24709#0" expanded="false" />
-            <element signature="e#24775#24974#0" expanded="false" />
-            <element signature="e#25030#25522#0" expanded="false" />
+            <element signature="e#4529#5336#0" expanded="false" />
+            <element signature="e#5399#6362#0" expanded="false" />
+            <element signature="e#6436#25708#0" expanded="false" />
+            <element signature="e#25774#25973#0" expanded="false" />
+            <element signature="e#26029#26521#0" expanded="false" />
           </folding>
         </state>
       </provider>

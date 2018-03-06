@@ -7,9 +7,16 @@ import json
 import csv
 import os
 import time
+import traceback
 import requests
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import WebDriverException
+from pyvirtualdisplay import Display
 from selenium import webdriver
-
+import socket
 
 CWD = os.path.dirname(os.path.abspath(__file__))
 driver_path = os.path.join(CWD, 'bin', 'chromedriver')
@@ -55,6 +62,26 @@ keys_YANG = ['SESU2127602', 'SESU2127618', 'SESU2127665', 'SESU2127670', 'SESU21
 #                 keys_MAERSK.append(row[0])
 #             if row[2] == "ZIM":
 #                 keys_ZIM.append(row[0])
+
+
+def _init_chromium():
+
+    socket.setdefaulttimeout(60)
+    display = Display(visible=False, size=(1280, 720))
+    display.start()
+    executable_path = driver_path
+    if not os.path.exists(executable_path):
+        # executable_path = '/usr/local/bin/chromedriver'
+        executable_path = '/home/ubuntu/Marin-Guru/chromedriver'
+    driver = webdriver.Chrome(executable_path=executable_path)
+
+    # options = webdriver.ChromeOptions()
+    # driver = webdriver.Chrome(
+    #     executable_path=driver_path,
+    #     service_log_path=driver_log_path,
+    #     chrome_options=options
+    # )
+    return driver
 
 
 class SiteProductItem(scrapy.Item):
@@ -283,28 +310,28 @@ class NewEvents (scrapy.Spider):
                                   callback=self.parse_product,
                                   dont_filter=True)
             if "cosco-usa.com" in start_url:
-                options = webdriver.ChromeOptions()
-                # options.add_argument('headless')
-                browser = webdriver.Chrome(
-                    executable_path=driver_path,
-                    service_log_path=driver_log_path,
-                    chrome_options=options
-                )
-                browser.maximize_window()
-                browser.implicitly_wait(100)
-                browser.set_page_load_timeout(100)
-                browser.get(start_url)
-                search_type = browser.find_element_by_xpath('//input[@value="bycont"]')
-                if search_type:
+                browser = _init_chromium()
+
+                try:
+                    browser.implicitly_wait(100)
+                    browser.set_page_load_timeout(200)
+                    browser.get(start_url)
+                    # ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
+                    # WebDriverWait(browser, 15, ignored_exceptions=ignored_exceptions).until(
+                    #     EC.presence_of_element_located((By.ID, "CargoTracking1"))
+                    # )
+                    search_type = browser.find_element_by_xpath('//input[@value="bycont"]')
                     search_type.click()
-                search_input = browser.find_element_by_id("idSearchString")
-                if search_input:
+                    search_input = browser.find_element_by_id("idSearchString")
                     search_input.send_keys('SESU4914398')
-                search_button = browser.find_element_by_xpath('//img[@alt="Search..."]')
-                if search_button:
+                    search_button = browser.find_element_by_xpath('//img[@alt="Search..."]')
                     search_button.click()
-                time.sleep(200)
-                page_content = browser.page_source
+                    time.sleep(100)
+                    page_content = browser.page_source
+                except:
+                    self.log("Cant start extraction: {}".format(traceback.format_exc()))
+                finally:
+                    browser.quit()
 
     def parse_product(self, response):
 

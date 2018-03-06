@@ -24,44 +24,43 @@ driver_log_path = os.path.join(CWD, 'bin', 'driver.log')
 
 keys_EMC = []
 keys_HMM = []
-keys_COSCO = ['SESU4914398']
-# keys_COSCO = []
+keys_COSCO = []
 keys_MAERSK = []
 keys_ZIM = []
 # keys_ZIM = ['TCKU1509890']
 keys_YANG = ['SESU2127602', 'SESU2127618', 'SESU2127665', 'SESU2127670', 'SESU2127686', 'SESU2127691']
 
-# try:
-#     with open(os.path.abspath('inputData.csv'), 'r') as f:
-#         reader = csv.reader(f)
-#         for row in reader:
-#             if row[2] == "EMC":
-#                 keys_EMC.append(row[0])
-#             if row[2] == "HMM":
-#                 keys_HMM.append(row[0])
-#             if row[2] == "COSCO-SHA":
-#                 keys_COSCO.append(row[0])
-#             if row[2] == "MAERSK":
-#                 keys_MAERSK.append(row[0])
-#             if row[2] == "ZIM":
-#                 keys_ZIM.append(row[0])
-#
-# except Exception as e:
-#     print('parse_csv Function => Got Error: {}'.format(e))
-#
-#     with open('/home/ubuntu/Marin-Guru/container_scraping/ScrapingContainer-MySQL/inputdata/inputData.csv', 'r') as f:
-#         reader = csv.reader(f)
-#         for row in reader:
-#             if row[2] == "EMC":
-#                 keys_EMC.append(row[0])
-#             if row[2] == "HMM":
-#                 keys_HMM.append(row[0])
-#             if row[2] == "COSCO-SHA":
-#                 keys_COSCO.append(row[0])
-#             if row[2] == "MAERSK":
-#                 keys_MAERSK.append(row[0])
-#             if row[2] == "ZIM":
-#                 keys_ZIM.append(row[0])
+try:
+    with open(os.path.abspath('inputData.csv'), 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row[2] == "EMC":
+                keys_EMC.append(row[0])
+            if row[2] == "HMM":
+                keys_HMM.append(row[0])
+            if row[2] == "COSCO-SHA":
+                keys_COSCO.append(row[0])
+            if row[2] == "MAERSK":
+                keys_MAERSK.append(row[0])
+            if row[2] == "ZIM":
+                keys_ZIM.append(row[0])
+
+except Exception as e:
+    print('parse_csv Function => Got Error: {}'.format(e))
+
+    with open('/home/ubuntu/Marin-Guru/container_scraping/ScrapingContainer-MySQL/inputdata/inputData.csv', 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row[2] == "EMC":
+                keys_EMC.append(row[0])
+            if row[2] == "HMM":
+                keys_HMM.append(row[0])
+            if row[2] == "COSCO-SHA":
+                keys_COSCO.append(row[0])
+            if row[2] == "MAERSK":
+                keys_MAERSK.append(row[0])
+            if row[2] == "ZIM":
+                keys_ZIM.append(row[0])
 
 
 def _init_chromium():
@@ -108,18 +107,18 @@ class NewEvents (scrapy.Spider):
                        'www.cosco-usa.com/', 'my.maerskline.com', 'www.zim.com']
 
     # start_urls = ['http://www.zim.com/pages/findcontainer.aspx?searchvalue1=TCKU1509890']
-    start_urls = ['http://www.cosco-usa.com/']
-    # start_urls = [
-    #     'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
-    #     'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
-    #     'blFields=undefined&cnFields=undefined&numbers=&numbers='
-    #     '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
-    #     '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
-    #     '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
-    #     'https://my.maerskline.com/tracking/search?searchNumber={}',
-    #     'http://www.zim.com/pages/findcontainer.aspx?searchvalue1={}',
-    #     'http://www.yangming.com/e-service/Track_Trace/mul_ctnr.aspx?str={},&rdolType=CT'
-    #               ]
+    # start_urls = ['http://www.cosco-usa.com/']
+    start_urls = [
+        'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
+        'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
+        'blFields=undefined&cnFields=undefined&numbers=&numbers='
+        '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers='
+        '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
+        '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
+        'https://my.maerskline.com/tracking/search?searchNumber={}',
+        'http://www.zim.com/pages/findcontainer.aspx?searchvalue1={}',
+        'http://www.yangming.com/e-service/Track_Trace/mul_ctnr.aspx?str={},&rdolType=CT'
+                  ]
 
     def start_requests(self):
         for start_url in self.start_urls:

@@ -20,6 +20,7 @@ keys_COSCO = []
 keys_MAERSK = []
 keys_ZIM = []
 # keys_ZIM = ['TCKU1509890']
+keys_YANG = ['SESU2127602', 'SESU2127618', 'SESU2127665', 'SESU2127670', 'SESU2127686', 'SESU2127691']
 
 try:
     with open(os.path.abspath('inputData.csv'), 'r') as f:
@@ -87,7 +88,8 @@ class NewEvents (scrapy.Spider):
         '&numbers=&numbers={}&numbers=&numbers=&numbers=&numbers='
         '&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=&numbers=',
         'https://my.maerskline.com/tracking/search?searchNumber={}',
-        'http://www.zim.com/pages/findcontainer.aspx?searchvalue1={}'
+        'http://www.zim.com/pages/findcontainer.aspx?searchvalue1={}',
+        'http://www.yangming.com/e-service/Track_Trace/mul_ctnr.aspx?str={},&rdolType=CT'
                   ]
 
     def start_requests(self):
@@ -273,6 +275,11 @@ class NewEvents (scrapy.Spider):
                                   },
                                   callback=self.parse_product,
                                   dont_filter=True)
+            if 'yangming.com' in start_url:
+                for key in keys_YANG:
+                    yield Request(url=start_url.format(key),
+                                  callback=self.parse_product,
+                                  dont_filter=True)
 
     def parse_product(self, response):
 
@@ -306,6 +313,8 @@ class NewEvents (scrapy.Spider):
                 ContainerNumber = str(response.xpath('//td[@class="bor_L_none"]/a/font/u//text()')[0].extract())
             if not ContainerNumber and response.xpath('//span[@class="tracking_container_id"]//text()'):
                 ContainerNumber = str(response.xpath('//span[@class="tracking_container_id"]//text()')[0].extract())
+            if not ContainerNumber and response.xpath('//tr[@class="field_odd"]//text()').extract():
+                ContainerNumber = str(response.xpath('//tr[@class="field_odd"]//text()').extract()[3])
             return ContainerNumber if ContainerNumber else None
         except Exception as e:
             print('No Data')
@@ -318,6 +327,9 @@ class NewEvents (scrapy.Spider):
                 ContainerSizeType = str(ContainerSizeType[0]).strip()
             if not ContainerSizeType and response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
                 ContainerSizeType = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[18])
+            if not ContainerSizeType and response.xpath('//tr[@class="field_odd"]//text()').extract():
+                ContainerSizeType = str(response.xpath('//tr[@class="field_odd"]//text()').extract()[6]) \
+                                    + '/' + str(response.xpath('//tr[@class="field_odd"]//text()').extract()[9])
             return ContainerSizeType if ContainerSizeType else None
         except Exception as e:
             print('No Data')
@@ -332,6 +344,8 @@ class NewEvents (scrapy.Spider):
                 Date = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[21])
             if not Date and response.xpath('//span[@class="ETA-block"]//text()').extract():
                 Date = str(response.xpath('//span[@class="ETA-block"]//text()').extract()[1].strip())
+            if not Date and response.xpath('//tr[@class="field_odd"]//text()').extract():
+                Date = str(response.xpath('//tr[@class="field_odd"]//text()').extract()[12])
             return Date if Date else None
         except Exception as e:
             print('No Data')
@@ -344,6 +358,8 @@ class NewEvents (scrapy.Spider):
                 ContainerMoves = str(ContainerMoves[0]).strip()
             if not ContainerMoves and response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
                 ContainerMoves = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[22])
+            if not ContainerMoves and response.xpath('//tr[@class="field_odd"]//text()').extract():
+                ContainerMoves = str(response.xpath('//tr[@class="field_odd"]//text()').extract()[15])
             return ContainerMoves if ContainerMoves else None
         except Exception as e:
             print('No Data')
@@ -356,6 +372,8 @@ class NewEvents (scrapy.Spider):
                 Location = str(Location[0]).strip()
             if not Location and response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract():
                 Location = str(response.xpath('//div[@class="base_table01"]/table/tbody/tr/td/text()').extract()[2])
+            if not Location and response.xpath('//tr[@class="field_odd"]//text()').extract():
+                Location = str(response.xpath('//tr[@class="field_odd"]//text()').extract()[20])
             return Location if Location else None
         except Exception as e:
             print('No Data')

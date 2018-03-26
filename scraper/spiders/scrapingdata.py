@@ -48,21 +48,6 @@ try:
 except Exception as e:
     print('parse_csv Function => Got Error: {}'.format(e))
 
-    with open('/home/ubuntu/Marin-Guru/container_scraping/ScrapingContainer-MySQL/inputdata/inputData.csv', 'r') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if row[2] == "EMC":
-                keys_EMC.append(row[0])
-            if row[2] == "HMM":
-                keys_HMM.append(row[0])
-            if row[2] == "COSCO-SHA":
-                keys_COSCO.append(row[0])
-            if row[2] == "MAERSK":
-                keys_MAERSK.append(row[0])
-            if row[2] == "ZIM":
-                keys_ZIM.append(row[0])
-
-
 def _init_chromium():
 
     socket.setdefaulttimeout(60)

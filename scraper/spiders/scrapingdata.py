@@ -8,12 +8,6 @@ import csv
 import os
 import time
 import traceback
-import requests
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import WebDriverException
 from pyvirtualdisplay import Display
 from selenium import webdriver
 import socket
@@ -47,6 +41,7 @@ try:
 
 except Exception as e:
     print('parse_csv Function => Got Error: {}'.format(e))
+
 
 def _init_chromium():
 

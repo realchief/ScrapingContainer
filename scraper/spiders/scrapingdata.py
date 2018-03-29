@@ -2,15 +2,8 @@ from scrapy.conf import settings
 from urllib import urlencode
 from scrapy import Request
 import scrapy
-import re
-import json
 import csv
 import os
-import time
-import traceback
-from pyvirtualdisplay import Display
-from selenium import webdriver
-import socket
 
 CWD = os.path.dirname(os.path.abspath(__file__))
 driver_path = os.path.join(CWD, 'bin', 'chromedriver')
@@ -41,20 +34,6 @@ try:
 
 except Exception as e:
     print('parse_csv Function => Got Error: {}'.format(e))
-
-
-def _init_chromium():
-
-    socket.setdefaulttimeout(60)
-    display = Display(visible=False, size=(1280, 720))
-    display.start()
-    executable_path = driver_path
-    if not os.path.exists(executable_path):
-        # executable_path = '/usr/local/bin/chromedriver'
-        executable_path = '/home/ubuntu/Marin-Guru/chromedriver'
-    driver = webdriver.Chrome(executable_path=executable_path)
-
-    return driver
 
 
 class SiteProductItem(scrapy.Item):
@@ -280,26 +259,6 @@ class NewEvents (scrapy.Spider):
                     yield Request(url=start_url.format(key),
                                   callback=self.parse_product,
                                   dont_filter=True)
-            if "cosco-usa.com" in start_url:
-                browser = _init_chromium()
-
-                try:
-                    browser.implicitly_wait(100)
-                    browser.set_page_load_timeout(200)
-                    browser.get(start_url)
-
-                    search_type = browser.find_element_by_xpath('//input[@value="bycont"]')
-                    search_type.click()
-                    search_input = browser.find_element_by_id("idSearchString")
-                    search_input.send_keys('SESU4914398')
-                    search_button = browser.find_element_by_xpath('//img[@alt="Search..."]')
-                    search_button.click()
-                    time.sleep(100)
-                    page_content = browser.page_source
-                except:
-                    self.log("Cant start extraction: {}".format(traceback.format_exc()))
-                finally:
-                    browser.quit()
 
     def parse_product(self, response):
 

@@ -14,20 +14,10 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ScrapingPrice_MySQL$scrapingdata.coverage" NAME="scrapingdata Coverage Results" MODIFIED="1518947873720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scraper/spiders" />
     <SUITE FILE_PATH="coverage/ScrapingContainer_MySQL$scrapingdata.coverage" NAME="scrapingdata Coverage Results" MODIFIED="1520372823744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scraper/spiders" />
-    <SUITE FILE_PATH="coverage/ScrapingContainer$scrapingdata.coverage" NAME="scrapingdata Coverage Results" MODIFIED="1522361928060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scraper/spiders" />
+    <SUITE FILE_PATH="coverage/ScrapingContainer$scrapingdata.coverage" NAME="scrapingdata Coverage Results" MODIFIED="1522363176414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scraper/spiders" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scraper/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -53,12 +43,12 @@
       <file leaf-file-name="scrapingdata.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="479" column="28" lean-forward="true" selection-start-line="479" selection-start-column="28" selection-end-line="479" selection-end-column="28" />
+            <state relative-caret-position="90">
+              <caret line="5" column="9" lean-forward="false" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
-                <element signature="e#24438#24637#0" expanded="false" />
-                <element signature="e#24693#25185#0" expanded="false" />
+                <element signature="e#23889#24088#0" expanded="false" />
+                <element signature="e#24144#24636#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -103,6 +93,9 @@
       <find>location</find>
       <find>date</find>
       <find>keys_HMM</find>
+      <find>Display</find>
+      <find>_init_chromium</find>
+      <find>webdriver</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -211,7 +204,7 @@
       <module name="scrapy-mysql" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$USER_HOME$/Jelle-Work/JelleVenv/local/lib/python2.7/site-packages/scrapy/cmdline.py" />
-      <option name="PARAMETERS" value="crawl scrapingdata -o $PROJECT_DIR$/../result/result8.csv" />
+      <option name="PARAMETERS" value="crawl scrapingdata -o $PROJECT_DIR$/../result/result9.csv" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
@@ -273,7 +266,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py</url>
-          <line>359</line>
+          <line>318</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
       </breakpoints>
@@ -370,8 +363,8 @@
           <caret line="57" column="38" lean-forward="true" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#24438#24637#0" expanded="false" />
-            <element signature="e#24693#25185#0" expanded="false" />
+            <element signature="e#23889#24088#0" expanded="false" />
+            <element signature="e#24144#24636#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -411,8 +404,8 @@
           <caret line="36" column="61" lean-forward="false" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="61" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#24438#24637#0" expanded="false" />
-            <element signature="e#24693#25185#0" expanded="false" />
+            <element signature="e#23889#24088#0" expanded="false" />
+            <element signature="e#24144#24636#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -452,8 +445,8 @@
           <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#24438#24637#0" expanded="false" />
-            <element signature="e#24693#25185#0" expanded="false" />
+            <element signature="e#23889#24088#0" expanded="false" />
+            <element signature="e#24144#24636#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -472,8 +465,8 @@
           <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#24438#24637#0" expanded="false" />
-            <element signature="e#24693#25185#0" expanded="false" />
+            <element signature="e#23889#24088#0" expanded="false" />
+            <element signature="e#24144#24636#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -513,8 +506,8 @@
           <caret line="97" column="68" lean-forward="false" selection-start-line="97" selection-start-column="68" selection-end-line="97" selection-end-column="68" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#24438#24637#0" expanded="false" />
-            <element signature="e#24693#25185#0" expanded="false" />
+            <element signature="e#23889#24088#0" expanded="false" />
+            <element signature="e#24144#24636#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -547,8 +540,8 @@
           <caret line="97" column="68" lean-forward="true" selection-start-line="97" selection-start-column="68" selection-end-line="97" selection-end-column="68" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#24438#24637#0" expanded="false" />
-            <element signature="e#24693#25185#0" expanded="false" />
+            <element signature="e#23889#24088#0" expanded="false" />
+            <element signature="e#24144#24636#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -683,12 +676,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scraper/spiders/scrapingdata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="479" column="28" lean-forward="true" selection-start-line="479" selection-start-column="28" selection-end-line="479" selection-end-column="28" />
+        <state relative-caret-position="90">
+          <caret line="5" column="9" lean-forward="false" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#24438#24637#0" expanded="false" />
-            <element signature="e#24693#25185#0" expanded="false" />
+            <element signature="e#23889#24088#0" expanded="false" />
+            <element signature="e#24144#24636#0" expanded="false" />
           </folding>
         </state>
       </provider>

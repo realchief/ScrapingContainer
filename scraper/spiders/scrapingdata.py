@@ -54,12 +54,6 @@ def _init_chromium():
         executable_path = '/home/ubuntu/Marin-Guru/chromedriver'
     driver = webdriver.Chrome(executable_path=executable_path)
 
-    # options = webdriver.ChromeOptions()
-    # driver = webdriver.Chrome(
-    #     executable_path=driver_path,
-    #     service_log_path=driver_log_path,
-    #     chrome_options=options
-    # )
     return driver
 
 
@@ -86,8 +80,6 @@ class NewEvents (scrapy.Spider):
     allowed_domains = ['www.shipmentlink.com', 'www.hmm.co.kr', 'elines.coscoshipping.com',
                        'www.cosco-usa.com/', 'my.maerskline.com', 'www.zim.com']
 
-    # start_urls = ['http://www.zim.com/pages/findcontainer.aspx?searchvalue1=TCKU1509890']
-    # start_urls = ['http://www.cosco-usa.com/']
     start_urls = [
         'https://www.shipmentlink.com/servlet/TDB1_CargoTracking.do',
         'http://www.hmm.co.kr/ebiz/track_trace/trackCTPv8.jsp?'
@@ -295,10 +287,7 @@ class NewEvents (scrapy.Spider):
                     browser.implicitly_wait(100)
                     browser.set_page_load_timeout(200)
                     browser.get(start_url)
-                    # ignored_exceptions = (NoSuchElementException, StaleElementReferenceException)
-                    # WebDriverWait(browser, 15, ignored_exceptions=ignored_exceptions).until(
-                    #     EC.presence_of_element_located((By.ID, "CargoTracking1"))
-                    # )
+
                     search_type = browser.find_element_by_xpath('//input[@value="bycont"]')
                     search_type.click()
                     search_input = browser.find_element_by_id("idSearchString")

@@ -1,0 +1,24 @@
+origin,vgm,weight,container_moves,destination,discharging_port,ServiceTerm,landing_port,container_num,container_sizetype,date,vessel_voyage,TS_port,location
+,13779 KGS,,Loaded (FCL) on vessel,,,,,LEAU4908550,40'(SH),MAR-01-2018,COSCO HOPE 030W,,SHANGHAI (CN)
+,7373.95 KGS,,Loaded (FCL) on vessel,,,,,LEAU4908858,40'(SH),MAR-15-2018,TAIPEI TRIUMPH 0326-004W,,SHANGHAI (CN)
+"SHANGHAI,CHINA",,- ,"PORTLAND, OR","PORTLAND, OR","TACOMA, WA",-,"SHANGHAI,CHINA",SESU2195253,DC/20,No discharge,,"BUSAN, KOREA                            ","SHANGHAI,CHINA"
+"SHANGHAI,CHINA",,- ,"PORTLAND, OR","PORTLAND, OR","TACOMA, WA",-,"SHANGHAI,CHINA",SESU2195470,DC/20,No discharge,,"BUSAN, KOREA                            ","SHANGHAI,CHINA"
+"SHANGHAI,CHINA",,- ,"PORTLAND, OR","PORTLAND, OR","TACOMA, WA",-,"SHANGHAI,CHINA",SESU2195227,DC/20,No discharge,,"BUSAN, KOREA                            ","SHANGHAI,CHINA"
+"SHANGHAI,CHINA",,- ,"PORTLAND, OR","PORTLAND, OR","TACOMA, WA",-,"SHANGHAI,CHINA",SESU2195232,DC/20,No discharge,,"BUSAN, KOREA                            ","SHANGHAI,CHINA"
+,,,,,,,,SESU2204397,,"20 Mar 2018, 08:45",Current ETA at final place of delivery,,
+,,,,,,,,SESU2204381,,"02 Apr 2018, 19:00",Current ETA at final place of delivery,,
+,,,,,,,,SESU2204416,,"22 Mar 2018, 18:13",Current ETA at final place of delivery,,
+,,,,,,,,SESU2204400,,"21 Mar 2018, 15:26",Current ETA at final place of delivery,,
+,,,,,,,,SESU2127412,,"20 Mar 2018, 15:21",Current ETA at final place of delivery,,
+,,,,,,,,SESU2126210,,"25 Mar 2018, 04:59",Current ETA at final place of delivery,,
+,,,,,,,,SESU2196516,,"05 May 2018, 08:00",Current ETA at final place of delivery,,
+,,,,,,,,SESU2126118,,"26 Mar 2018, 10:44",Current ETA at final place of delivery,,
+,,,Empty Returned (Off-hired),,,,,SESU2127602,20/DC-Dry cargo container,2016/08/05 23:59,,,CHICAGO
+,,,Empty Returned (Off-hired),,,,,SESU2127618,20/DC-Dry cargo container,2016/08/01 23:59,,,CHICAGO
+,,,Empty Returned (Off-hired),,,,,SESU2127665,20/DC-Dry cargo container,2016/08/03 23:59,,,CHICAGO
+,,,Empty Returned (Off-hired),,,,,SESU2127670,20/DC-Dry cargo container,2016/08/22 23:59,,,CHICAGO
+,,,Empty Returned (Off-hired),,,,,SESU2127686,20/DC-Dry cargo container,2016/08/04 23:59,,,CHICAGO
+,,,Empty Returned (Off-hired),,,,,SESU2127691,20/DC-Dry cargo container,2016/05/16 23:59,,,CHICAGO
+,,,,,,,,SESU2195150,,"14 Apr 2018, 19:00",Current ETA at final place of delivery,,
+,,,,,,,,SESU2193693,,"07 Apr 2018, 01:00",Current ETA at final place of delivery,,
+,,,,,,,,SESU2190945,,"13 Apr 2018, 14:00",Current ETA at final place of delivery,,
